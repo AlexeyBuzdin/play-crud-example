@@ -4,35 +4,34 @@ import models.Hotel;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import play.mvc.Results;
 
 public class Hotels extends Controller {
 
     static Form<Hotel> hotelForm = Form.form(Hotel.class);
 
-    public static Result hotels() {
+    public static Result allHotel() {
         return ok(views.html.index.render(Hotel.all(), hotelForm));
     }
 
     public static Result newHotel() {
+        return ok(views.html.hotel.render(null, hotelForm));
+    }
+
+    public static Result openHotel(Long id) {
+        return ok(views.html.hotel.render(Hotel.get(id), hotelForm));
+    }
+
+    public static Result saveHotel() {
         Form<Hotel> filledForm = hotelForm.bindFromRequest();
         if(filledForm.hasErrors()) return badRequest(filledForm);
 
-        Hotel.create(filledForm.get());
-        return redirect(routes.Hotels.hotels());
+        Hotel.save(filledForm.get());
+        return redirect(routes.Hotels.allHotel());
     }
 
     public static Result deleteHotel(Long id) {
         Hotel.delete(id);
-        return redirect(routes.Hotels.hotels());
-    }
-
-    public static Result modifyHotel(Long id) {
-        Form<Hotel> filledForm = hotelForm.bindFromRequest();
-        if(filledForm.hasErrors()) return badRequest(filledForm);
-
-        Hotel.modify(id, filledForm.get());
-        return redirect(routes.Hotels.hotels());
+        return redirect(routes.Hotels.allHotel());
     }
 
     private static Status badRequest(Form<Hotel> filledForm) {
