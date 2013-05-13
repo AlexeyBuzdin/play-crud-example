@@ -1,0 +1,33 @@
+@(hotels: List[Hotel], taskForm: Form[Hotel])
+
+@import helper._
+
+@main("Todo list") {
+
+    <h1>@hotels.size hotel(s)</h1>
+
+    <ul>
+    @hotels.map { hotel =>
+        <li>
+            @hotel.name
+            @hotel.address
+
+            @form(routes.Hotels.deleteHotel(hotel.id)) {
+                <input type="submit" value="Delete">
+                }
+        </li>
+    }
+    </ul>
+
+    <h2>Add a new Hotel</h2>
+
+    @form(routes.Hotels.newHotel, 'id -> "hotelForm") {
+
+        Name: <input type="edit" name="name"> <br/>
+        Address: <input type="edit" name="address"> <br/>
+
+        <input type="submit" value="Create">
+
+    }
+
+}
