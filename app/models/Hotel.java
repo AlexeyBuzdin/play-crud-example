@@ -24,7 +24,6 @@ public class Hotel extends Model {
     public String address;
 
     @OneToMany
-    @JoinColumn(name="ID")
     public List<Apartment> apartments = new ArrayList<Apartment>();
 
 

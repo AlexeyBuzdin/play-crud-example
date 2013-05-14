@@ -14,7 +14,7 @@
 
                 <input type="submit" value="Save"><br/>
 
-                @if(hotel.apartments != null){
+                @if(hotel != null && hotel.apartments != null){
                     <ul> @for(apartment <- hotel.apartments) {
                         <li>
                             @*<a href="/hotel/@hotel.id"> @hotel.name </a>*@
@@ -22,9 +22,9 @@
                             @apartment.apartmentType.title
                             @apartment.capacity
 
-                            @form(routes.Hotels.deleteHotel(hotel.id)) {
+                           @*@form(routes.Hotels.deleteHotel(hotel.id)) { *@
                                 <input type="submit" value="Delete">
-                                }
+                                @*}                                           *@
                         </li>
                     }</ul>
                 }

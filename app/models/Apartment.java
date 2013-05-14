@@ -20,8 +20,8 @@ public class Apartment extends Model {
     @JoinColumn(name="HOTEL_ID", nullable=false)
     public Hotel hotel;
 
-    @ManyToOne
-    @JoinColumn(name="APARTMENT_TYPE_ID", nullable=false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="APARTMENT_TYPE_ID", referencedColumnName="ID", nullable=false)
     public ApartmentType apartmentType;
 
     @Required

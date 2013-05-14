@@ -18,7 +18,8 @@ public class Hotels extends Controller {
     }
 
     public static Result openHotel(Long id) {
-        return ok(views.html.hotel.render(Hotel.get(id), hotelForm));
+        Hotel hotel = Hotel.get(id);
+        return ok(views.html.hotel.render(hotel, hotelForm));
     }
 
     public static Result saveHotel() {
