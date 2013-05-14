@@ -2,10 +2,7 @@ package models;
 
 import play.db.ebean.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import static play.data.validation.Constraints.*;
 
@@ -13,15 +10,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "HOTEL")
 public class Hotel extends Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
+
     @Required
     public String name;
+
     @Required
     public String address;
+
+    @OneToMany
+    @JoinColumn(name="ID")
+    public List<Apartment> apartments = new ArrayList<Apartment>();
+
+
 
     public Long getId() {
         return id;
@@ -47,7 +53,14 @@ public class Hotel extends Model {
         this.address = address;
     }
 
+    public List<Apartment> getApartments() {
+        return apartments;
+    }
 
+    public void setApartments(List<Apartment> apartments) {
+        this.apartments.clear();
+        this.apartments.addAll(apartments);
+    }
 
 
 

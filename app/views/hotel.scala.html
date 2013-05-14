@@ -12,7 +12,22 @@
                 Name: <input type="edit" name="name" value="@hotelName"> <br/>
                 Address: <input type="edit" name="address" value="@hotelAddress"> <br/>
 
-                <input type="submit" value="Save">
+                <input type="submit" value="Save"><br/>
+
+                @if(hotel.apartments != null){
+                    <ul> @for(apartment <- hotel.apartments) {
+                        <li>
+                            @*<a href="/hotel/@hotel.id"> @hotel.name </a>*@
+                            @apartment.title
+                            @apartment.apartmentType.title
+                            @apartment.capacity
+
+                            @form(routes.Hotels.deleteHotel(hotel.id)) {
+                                <input type="submit" value="Delete">
+                                }
+                        </li>
+                    }</ul>
+                }
             }
         }
     }
