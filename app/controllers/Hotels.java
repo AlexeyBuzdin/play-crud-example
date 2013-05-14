@@ -1,5 +1,6 @@
 package controllers;
 
+import models.ApartmentType;
 import models.Hotel;
 import play.data.Form;
 import play.mvc.Controller;
@@ -19,6 +20,8 @@ public class Hotels extends Controller {
 
     public static Result openHotel(Long id) {
         Hotel hotel = Hotel.get(id);
+        ApartmentType apartmentType = ApartmentType.get(hotel.getApartments().get(0).getId());
+
         return ok(views.html.hotel.render(hotel, hotelForm));
     }
 

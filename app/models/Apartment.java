@@ -4,6 +4,7 @@ import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static play.data.validation.Constraints.Required;
@@ -13,6 +14,7 @@ import static play.data.validation.Constraints.Required;
 public class Apartment extends Model {
 
     @Id
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
@@ -21,13 +23,18 @@ public class Apartment extends Model {
     public Hotel hotel;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="APARTMENT_TYPE_ID", referencedColumnName="ID", nullable=false)
+    @JoinColumn(name="APARTMENT_TYPE_ID", nullable=false)
     public ApartmentType apartmentType;
 
+    @OneToMany
+    public List<ApartmentProposal> proposals = new ArrayList<ApartmentProposal>();
+
     @Required
+    @Column(name = "TITLE")
     public String title;
 
     @Required
+    @Column(name = "CAPACITY")
     public Integer capacity;
 
     public Long getId() {
@@ -70,21 +77,26 @@ public class Apartment extends Model {
         this.capacity = capacity;
     }
 
+    public List<ApartmentProposal> getProposals() {
+        return proposals;
+    }
 
+    public void setProposals(List<ApartmentProposal> proposals) {
+        this.proposals = proposals;
+    }
 
+    public static Finder<Long,Apartment> find = new Finder<Long, Apartment>(Long.class, Apartment.class);
 
-    public static Finder<Long,ApartmentType> find = new Finder<Long, ApartmentType>(Long.class, ApartmentType.class);
-
-    public static List<ApartmentType> all() {
+    public static List<Apartment> all() {
         return find.all();
     }
 
-    public static ApartmentType get(Long id) {
+    public static Apartment get(Long id) {
         return find.byId(id);
     }
 
-    public static void save(ApartmentType hotel) {
-        hotel.save();
+    public static void save(Apartment apartment) {
+        apartment.save();
     }
 
     public static void delete(Long id) {

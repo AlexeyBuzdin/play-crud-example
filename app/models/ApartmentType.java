@@ -12,6 +12,7 @@ import static play.data.validation.Constraints.Required;
 public class ApartmentType extends Model {
 
     @Id
+    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
@@ -47,8 +48,8 @@ public class ApartmentType extends Model {
         return find.byId(id);
     }
 
-    public static void save(ApartmentType hotel) {
-        hotel.save();
+    public static void save(ApartmentType type) {
+        type.save();
     }
 
     public static void delete(Long id) {
