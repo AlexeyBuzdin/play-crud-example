@@ -1,0 +1,13 @@
+@(hotelForm: Form[Hotel])
+
+@import helper._
+
+@main {
+    @form(routes.Hotels.saveHotel) {
+
+        Name: <input type="edit" name="name" value=""> <br/>
+        Address: <input type="edit" name="address" value=""> <br/>
+
+        <input type="submit" value="Save"><br/>
+    }
+}

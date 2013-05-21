@@ -74,12 +74,15 @@ public class Hotel extends Model {
         return find.byId(id);
     }
 
-    public static void save(Hotel hotel) {
-        hotel.save();
-    }
-
     public static void delete(Long id) {
         find.ref(id).delete();
     }
 
+    public static void save(Hotel hotel) {
+        hotel.save();
+    }
+
+    public static void update(Hotel hotel, Long id) {
+        hotel.update(id);
+    }
 }

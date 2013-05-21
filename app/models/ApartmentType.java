@@ -3,6 +3,7 @@ package models;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.List;
 
 import static play.data.validation.Constraints.Required;

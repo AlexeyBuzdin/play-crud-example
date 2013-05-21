@@ -26,7 +26,7 @@ public class Apartment extends Model {
     @JoinColumn(name="APARTMENT_TYPE_ID", nullable=false)
     public ApartmentType apartmentType;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     public List<ApartmentProposal> proposals = new ArrayList<ApartmentProposal>();
 
     @Required

@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Apartment;
 import models.ApartmentType;
 import models.Hotel;
 import play.data.Form;
@@ -15,14 +16,19 @@ public class Hotels extends Controller {
     }
 
     public static Result newHotel() {
-        return ok(views.html.hotel.render(null, hotelForm));
+        return ok(views.html.hotel_new.render(hotelForm));
     }
 
     public static Result openHotel(Long id) {
         Hotel hotel = Hotel.get(id);
-        ApartmentType apartmentType = ApartmentType.get(hotel.getApartments().get(0).getId());
 
-        return ok(views.html.hotel.render(hotel, hotelForm));
+        // TODO: hack. Should be fixed in future versions
+        for (Apartment apartment: hotel.getApartments()) {
+            Long apartmentTypeId = apartment.getApartmentType().getId();
+            apartment.setApartmentType(ApartmentType.get(apartmentTypeId));
+        }
+
+        return ok(views.html.hotel_update.render(hotel, hotelForm));
     }
 
     public static Result saveHotel() {
@@ -30,6 +36,16 @@ public class Hotels extends Controller {
         if(filledForm.hasErrors()) return badRequest(filledForm);
 
         Hotel.save(filledForm.get());
+        return redirect(routes.Hotels.allHotel());
+    }
+
+    public static Result updateHotel(Long id) {
+        if(id != null){
+            Form<Hotel> filledForm = hotelForm.fill(Hotel.find.byId(id)).bindFromRequest();
+            if(filledForm.hasErrors()) return badRequest(filledForm);
+
+            Hotel.update(filledForm.get(), id);
+        }
         return redirect(routes.Hotels.allHotel());
     }
 
