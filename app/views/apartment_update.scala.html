@@ -7,7 +7,14 @@
         @form(routes.Apartments.updateApartment(apartment.id)) {
 
             Title: <input type="edit" name="title" value="@apartment.title"> <br/>
-            Apartment type <br/>
+
+
+            Apartment type: <select name="apartmentTypeId">
+                @for(apartmentType <- ApartmentType.all()){
+                    <option value="@apartmentType.id" @if(apartment.apartmentType.id == apartmentType.id){selected="true"}>@apartmentType.title</option>
+                }
+            </select><br/>
+
             Capacity: <input type="edit" name="capacity" value="@apartment.capacity"> <br/>
 
             <input type="submit" value="Save"><br/>

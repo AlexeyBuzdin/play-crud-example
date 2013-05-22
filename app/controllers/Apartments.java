@@ -26,8 +26,14 @@ public class Apartments extends Controller {
         if(id != null){
             Form<Apartment> filledForm = apartmentForm.fill(Apartment.find.byId(id)).bindFromRequest();
             if(filledForm.hasErrors()) return badRequest(filledForm);
+            Apartment apartment = filledForm.get();
 
-            Apartment.update(filledForm.get(), id);
+            String apartmentTypeId = Form.form().bindFromRequest().get("apartmentTypeId");
+            ApartmentType apartmentType = ApartmentType.get(Long.valueOf(apartmentTypeId));
+
+            apartment.setApartmentType(apartmentType);
+
+            Apartment.update(apartment, id);
         }
         return redirect(routes.Hotels.allHotel());
     }
