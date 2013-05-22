@@ -3,23 +3,30 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                                  controllers.Application.index
 
 # Tasks
-GET     /hotels                  controllers.Hotels.allHotel
+GET     /hotels                            controllers.Hotels.allHotel
 
-GET     /hotel/new               controllers.Hotels.newHotel
-POST    /hotel/save              controllers.Hotels.saveHotel
-GET     /hotel/:id               controllers.Hotels.openHotel(id: Long)
-POST    /hotel/:id/update        controllers.Hotels.updateHotel(id: Long)
-POST    /hotel/:id/delete        controllers.Hotels.deleteHotel(id: Long)
+GET     /hotel/new                         controllers.Hotels.newHotel
+POST    /hotel/save                        controllers.Hotels.saveHotel
+GET     /hotel/:id                         controllers.Hotels.openHotel(id: Long)
+POST    /hotel/:id/update                  controllers.Hotels.updateHotel(id: Long)
+POST    /hotel/:id/delete                  controllers.Hotels.deleteHotel(id: Long)
 
 GET     /hotel/:hotelId/apartment/new      controllers.Apartments.newApartment(hotelId: Long)
 POST    /hotel/:hotelId/apartment/save     controllers.Apartments.saveApartment(hotelId: Long)
 
-GET     /apartment/:id               controllers.Apartments.openApartment(id: Long)
-POST    /apartment/:id/update        controllers.Apartments.updateApartment(id: Long)
-POST    /apartment/:id/delete        controllers.Apartments.deleteApartment(id: Long)
+GET     /apartment/:id                     controllers.Apartments.openApartment(id: Long)
+POST    /apartment/:id/update              controllers.Apartments.updateApartment(id: Long)
+POST    /apartment/:id/delete              controllers.Apartments.deleteApartment(id: Long)
+
+GET     /client/new                        controllers.Clients.newClient
+POST    /client/save                       controllers.Clients.saveClient
+GET     /client/:id                        controllers.Clients.openClient(id: Long)
+POST    /client/:id/update                 controllers.Clients.updateClient(id: Long)
+POST    /client/:id/delete                 controllers.Clients.deleteClient(id: Long)
+
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /assets/*file                      controllers.Assets.at(path="/public", file)

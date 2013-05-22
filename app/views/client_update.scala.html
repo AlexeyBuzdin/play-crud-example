@@ -1,0 +1,16 @@
+@(client: Client, hotelForm: Form[Client])
+
+@import helper._
+
+@main {
+    @if(client != null) {
+        @form(routes.Clients.updateClient(client.id)) {
+
+            First Name: <input type="edit" name="firstName" value="@client.firstName"> <br/>
+            Last Name: <input type="edit" name="lastName" value="@client.lastName"> <br/>
+            Email: <input type="edit" name="email" value="@client.email"> <br/>
+
+            <input type="submit" value="Save"><br/>
+        }
+    }
+}
