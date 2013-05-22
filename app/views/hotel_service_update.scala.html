@@ -1,0 +1,16 @@
+@(hotelService: HotelService, hotelServiceForm: Form[HotelService])
+
+@import helper._
+
+@main {
+    @if(hotelService != null) {
+        @form(routes.HotelServices.updateHotelService(hotelService.id)) {
+
+            Alias: <input type="edit" name="alias" value="@hotelService.alias"> <br/>
+            Name: <input type="edit" name="name" value="@hotelService.name"> <br/>
+            Price: <input type="edit" name="price" value="@hotelService.price"> <br/>
+
+            <input type="submit" value="Save"><br/>
+        }
+    }
+}

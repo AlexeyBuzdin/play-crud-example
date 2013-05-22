@@ -78,6 +78,8 @@ create table HOTEL_SERVICE (
   ID bigint auto_increment,
 
   NAME varchar(100) not null,
+  ALIAS varchar(100) not null,
+  PRICE bigint not null,
 
   primary key(ID),
   unique(NAME)
@@ -87,8 +89,6 @@ create table ADDITIONAL_SERVICE (
   ID bigint auto_increment,
   HOTEL_SERVICE_ID bigint not null,
   APARTMENT_HISTORY_ID bigint not null,
-
-  PRICE bigint not null,
 
   primary key(ID),
   foreign key(HOTEL_SERVICE_ID) references HOTEL_SERVICE(ID),
@@ -107,9 +107,9 @@ insert into CLIENT(FIRST_NAME, LAST_NAME, EMAIL) values
   ('Zurab', 'Afonosjan', 'Zurab.Afonosjan@yandex.com'),
   ('Irena', 'Mitina', 'Irena.Mitina@inbox.lv');
 
-insert into HOTEL_SERVICE(NAME) values
-  ('Extra bed'), ('Breakfast'), ('Lunch'), ('Dinner'),
-  ('Internet'), ('Cable TV'), ('Other');
+insert into HOTEL_SERVICE(NAME, ALIAS, PRICE) values
+  ('Extra bed', 'Extra bed', 800), ('Breakfast', 'Breakfast', 400), ('Lunch', 'Lunch', 600), ('Dinner', 'Dinner', 400),
+  ('Internet', 'Internet', 200), ('Cable TV', 'Cable TV', 200);
 
 -- http://software.goreserva.com/help/site-admin/164-how-to-manage-room-types-and-labels
 insert into APARTMENT_TYPE(TITLE) values
