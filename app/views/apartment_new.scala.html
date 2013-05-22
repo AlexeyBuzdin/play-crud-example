@@ -1,9 +1,9 @@
-@(apartmentForm: Form[Apartment])
+@(hotelId: Long, apartmentForm: Form[Apartment])
 
 @import helper._
 
 @main {
-    @form(routes.Apartments.saveApartment) {
+    @form(routes.Apartments.saveApartment(hotelId)) {
 
         Title: <input type="edit" name="title" value=""> <br/>
 

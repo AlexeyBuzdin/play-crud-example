@@ -10,21 +10,22 @@
             Address: <input type="edit" name="address" value="@hotel.address"> <br/>
 
             <input type="submit" value="Save"><br/>
-
-            @if(hotel != null && hotel.apartments != null){
-                <ul> @for(apartment <- hotel.apartments) {
-                    <li>
-                        @*<a href="/hotel/@hotel.id"> @hotel.name </a>*@
-                        <a href="/apartment/@apartment.id">@apartment.title</a>
-                        @apartment.apartmentType.title
-                        Beds: @apartment.capacity
-
-                        <form action="/apartment/@apartment.id/delete" method="post">
-                            <input type="submit" value="Delete">
-                        </form>
-                    </li>
-                }</ul>
-            }
         }
+
+        @if(hotel.apartments != null){
+            <ul> @for(apartment <- hotel.apartments) {
+                <li>
+                    @*<a href="/hotel/@hotel.id"> @hotel.name </a>*@
+                    <a href="/apartment/@apartment.id">@apartment.title</a>
+                    @apartment.apartmentType.title
+                    Beds: @apartment.capacity
+
+                    <form action="/apartment/@apartment.id/delete" method="post">
+                        <input type="submit" value="Delete">
+                    </form>
+                </li>
+            }</ul>
+        }
+        <a href="/hotel/@hotel.id/apartment/new">New Apartment</a>
     }
 }
