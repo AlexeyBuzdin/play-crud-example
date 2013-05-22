@@ -7,12 +7,17 @@ GET     /                           controllers.Application.index
 
 # Tasks
 GET     /hotels                  controllers.Hotels.allHotel
+
 GET     /hotel/new               controllers.Hotels.newHotel
 POST    /hotel/save              controllers.Hotels.saveHotel
 GET     /hotel/:id               controllers.Hotels.openHotel(id: Long)
 POST    /hotel/:id/update        controllers.Hotels.updateHotel(id: Long)
 POST    /hotel/:id/delete        controllers.Hotels.deleteHotel(id: Long)
 
+GET     /apartment/new               controllers.Apartments.newApartment
+POST    /apartment/save              controllers.Apartments.saveApartment
+GET     /apartment/:id               controllers.Apartments.openApartment(id: Long)
+POST    /apartment/:id/update        controllers.Apartments.updateApartment(id: Long)
 POST    /apartment/:id/delete        controllers.Apartments.deleteApartment(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path

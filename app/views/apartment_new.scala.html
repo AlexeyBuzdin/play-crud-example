@@ -1,0 +1,14 @@
+@(apartmentForm: Form[Apartment])
+
+@import helper._
+
+@main {
+    @form(routes.Apartments.saveApartment) {
+
+        Title: <input type="edit" name="title" value=""> <br/>
+        Apartment type <br/>
+        Capacity: <input type="edit" name="capacity" value=""> <br/>
+
+        <input type="submit" value="Save"><br/>
+    }
+}

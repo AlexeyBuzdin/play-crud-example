@@ -15,7 +15,7 @@
                 <ul> @for(apartment <- hotel.apartments) {
                     <li>
                         @*<a href="/hotel/@hotel.id"> @hotel.name </a>*@
-                        @apartment.title
+                        <a href="/apartment/@apartment.id">@apartment.title</a>
                         @apartment.apartmentType.title
                         Beds: @apartment.capacity
 

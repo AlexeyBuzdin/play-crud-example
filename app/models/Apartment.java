@@ -103,4 +103,7 @@ public class Apartment extends Model {
         find.ref(id).delete();
     }
 
+    public static void update(Apartment apartment, Long id) {
+        apartment.update(id);
+    }
 }

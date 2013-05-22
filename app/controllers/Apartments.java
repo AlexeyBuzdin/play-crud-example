@@ -12,15 +12,25 @@ public class Apartments extends Controller {
 
     static Form<Apartment> apartmentForm = Form.form(Apartment.class);
 
-//    public static Result newApartment() {
-//        return ok(views.html.apartment.render(null, apartmentForm));
-//    }
-//
-//    public static Result openApartment(Long id) {
-//        Apartment apartment = Apartment.get(id);
-//
-//        return ok(views.html.apartment.render(apartment, apartmentForm));
-//    }
+    public static Result newApartment() {
+        return ok(views.html.apartment_new.render(apartmentForm));
+    }
+
+    public static Result openApartment(Long id) {
+        Apartment apartment = Apartment.get(id);
+
+        return ok(views.html.apartment_update.render(apartment, apartmentForm));
+    }
+
+    public static Result updateApartment(Long id) {
+        if(id != null){
+            Form<Apartment> filledForm = apartmentForm.fill(Apartment.find.byId(id)).bindFromRequest();
+            if(filledForm.hasErrors()) return badRequest(filledForm);
+
+            Apartment.update(filledForm.get(), id);
+        }
+        return redirect(routes.Hotels.allHotel());
+    }
 
     public static Result saveApartment() {
         Form<Apartment> filledForm = apartmentForm.bindFromRequest();

@@ -1,0 +1,31 @@
+@(apartment: Apartment, hotelForm: Form[Apartment])
+
+@import helper._
+
+@main {
+    @if(apartment != null) {
+        @form(routes.Apartments.updateApartment(apartment.id)) {
+
+            Title: <input type="edit" name="title" value="@apartment.title"> <br/>
+            Apartment type <br/>
+            Capacity: <input type="edit" name="capacity" value="@apartment.capacity"> <br/>
+
+            <input type="submit" value="Save"><br/>
+
+            @*@if(hotel != null && hotel.apartments != null){*@
+                @*<ul> @for(apartment <- hotel.apartments) {*@
+                    @*<li>*@
+                        @*<a href="/hotel/@hotel.id"> @hotel.name </a>*@
+                        @*<a href="/apartment/@apartment.id">@apartment.title</a>*@
+                        @*@apartment.apartmentType.title*@
+                        @*Beds: @apartment.capacity*@
+
+                        @*<form action="/apartment/@apartment.id/delete" method="post">*@
+                            @*<input type="submit" value="Delete">*@
+                        @*</form>*@
+                    @*</li>*@
+                @*}</ul>*@
+            @*}*@
+        }
+    }
+}
