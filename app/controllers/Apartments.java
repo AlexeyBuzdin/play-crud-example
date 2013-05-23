@@ -6,25 +6,24 @@ import models.Hotel;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import scala.runtime.Nothing$;
 
 public class Apartments extends Controller {
 
-    static Form<Apartment> apartmentForm = Form.form(Apartment.class);
+    static Form<Apartment> form = Form.form(Apartment.class);
 
-    public static Result newApartment(Long hotelId) {
-        return ok(views.html.apartment_new.render(hotelId, apartmentForm));
+    public static Result create(Long hotelId) {
+        return ok(views.html.apartment_new.render(hotelId, form));
     }
 
-    public static Result openApartment(Long id) {
+    public static Result open(Long id) {
         Apartment apartment = Apartment.get(id);
 
-        return ok(views.html.apartment_update.render(apartment, apartmentForm));
+        return ok(views.html.apartment_update.render(apartment, form));
     }
 
-    public static Result updateApartment(Long id) {
+    public static Result update(Long id) {
         if(id != null){
-            Form<Apartment> filledForm = apartmentForm.fill(Apartment.find.byId(id)).bindFromRequest();
+            Form<Apartment> filledForm = form.fill(Apartment.find.byId(id)).bindFromRequest();
             if(filledForm.hasErrors()) return badRequest(filledForm);
             Apartment apartment = filledForm.get();
 
@@ -35,11 +34,11 @@ public class Apartments extends Controller {
 
             Apartment.update(apartment, id);
         }
-        return redirect(routes.Hotels.allHotel());
+        return redirect(routes.Hotels.all());
     }
 
-    public static Result saveApartment(Long hotelId) {
-        Form<Apartment> filledForm = apartmentForm.bindFromRequest();
+    public static Result save(Long hotelId) {
+        Form<Apartment> filledForm = form.bindFromRequest();
         if(filledForm.hasErrors()) return badRequest(filledForm);
 
         Apartment apartment = filledForm.get();
@@ -52,12 +51,12 @@ public class Apartments extends Controller {
         apartment.setApartmentType(apartmentType);
 
         Apartment.save(apartment);
-        return redirect(routes.Hotels.openHotel(hotelId));
+        return redirect(routes.Hotels.open(hotelId));
     }
 
-    public static Result deleteApartment(Long id) {
+    public static Result delete(Long id) {
         Apartment.delete(id);
-        return redirect(routes.Hotels.allHotel());
+        return redirect(routes.Hotels.all());
     }
 
     private static Status badRequest(Form<Apartment> filledForm) {

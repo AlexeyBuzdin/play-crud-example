@@ -4,7 +4,7 @@
 
 @main {
     @if(hotel != null) {
-        @form(routes.Hotels.updateHotel(hotel.id)) {
+        @form(routes.Hotels.update(hotel.id)) {
 
             Name: <input type="edit" name="name" value="@hotel.name"> <br/>
             Address: <input type="edit" name="address" value="@hotel.address"> <br/>

@@ -4,7 +4,7 @@
 
 @main {
     @if(apartment != null) {
-        @form(routes.Apartments.updateApartment(apartment.id)) {
+        @form(routes.Apartments.update(apartment.id)) {
 
             Title: <input type="edit" name="title" value="@apartment.title"> <br/>
 

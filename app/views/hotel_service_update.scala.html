@@ -4,7 +4,7 @@
 
 @main {
     @if(hotelService != null) {
-        @form(routes.HotelServices.updateHotelService(hotelService.id)) {
+        @form(routes.HotelServices.update(hotelService.id)) {
 
             Alias: <input type="edit" name="alias" value="@hotelService.alias"> <br/>
             Name: <input type="edit" name="name" value="@hotelService.name"> <br/>

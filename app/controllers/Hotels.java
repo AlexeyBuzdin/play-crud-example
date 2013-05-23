@@ -9,17 +9,17 @@ import play.mvc.Result;
 
 public class Hotels extends Controller {
 
-    static Form<Hotel> hotelForm = Form.form(Hotel.class);
+    static Form<Hotel> form = Form.form(Hotel.class);
 
-    public static Result allHotel() {
-        return ok(views.html.index.render(Hotel.all(), hotelForm));
+    public static Result all() {
+        return ok(views.html.index.render(Hotel.all(), form));
     }
 
-    public static Result newHotel() {
-        return ok(views.html.hotel_new.render(hotelForm));
+    public static Result create() {
+        return ok(views.html.hotel_new.render(form));
     }
 
-    public static Result openHotel(Long id) {
+    public static Result open(Long id) {
         Hotel hotel = Hotel.get(id);
 
         // TODO: hack. Should be fixed in future versions
@@ -28,30 +28,30 @@ public class Hotels extends Controller {
             apartment.setApartmentType(ApartmentType.get(apartmentTypeId));
         }
 
-        return ok(views.html.hotel_update.render(hotel, hotelForm));
+        return ok(views.html.hotel_update.render(hotel, form));
     }
 
-    public static Result saveHotel() {
-        Form<Hotel> filledForm = hotelForm.bindFromRequest();
+    public static Result save() {
+        Form<Hotel> filledForm = form.bindFromRequest();
         if(filledForm.hasErrors()) return badRequest(filledForm);
 
         Hotel.save(filledForm.get());
-        return redirect(routes.Hotels.allHotel());
+        return redirect(routes.Hotels.all());
     }
 
-    public static Result updateHotel(Long id) {
+    public static Result update(Long id) {
         if(id != null){
-            Form<Hotel> filledForm = hotelForm.fill(Hotel.find.byId(id)).bindFromRequest();
+            Form<Hotel> filledForm = form.fill(Hotel.find.byId(id)).bindFromRequest();
             if(filledForm.hasErrors()) return badRequest(filledForm);
 
             Hotel.update(filledForm.get(), id);
         }
-        return redirect(routes.Hotels.allHotel());
+        return redirect(routes.Hotels.all());
     }
 
-    public static Result deleteHotel(Long id) {
+    public static Result delete(Long id) {
         Hotel.delete(id);
-        return redirect(routes.Hotels.allHotel());
+        return redirect(routes.Hotels.all());
     }
 
     private static Status badRequest(Form<Hotel> filledForm) {

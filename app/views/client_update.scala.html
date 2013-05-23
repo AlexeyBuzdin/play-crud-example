@@ -4,7 +4,7 @@
 
 @main {
     @if(client != null) {
-        @form(routes.Clients.updateClient(client.id)) {
+        @form(routes.Clients.update(client.id)) {
 
             First Name: <input type="edit" name="firstName" value="@client.firstName"> <br/>
             Last Name: <input type="edit" name="lastName" value="@client.lastName"> <br/>

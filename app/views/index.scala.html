@@ -11,7 +11,7 @@
             <a href="/hotel/@hotel.id"> @hotel.name </a>
             @hotel.address
 
-            @form(routes.Hotels.deleteHotel(hotel.id)) {
+            @form(routes.Hotels.delete(hotel.id)) {
                 <input type="submit" value="Delete">
             }
         </li>

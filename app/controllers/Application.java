@@ -7,7 +7,7 @@ import play.mvc.*;
 public class Application extends Controller {
 
     public static Result index() {
-        return redirect(routes.Hotels.allHotel());
+        return redirect(routes.Hotels.all());
     }
   
 }
