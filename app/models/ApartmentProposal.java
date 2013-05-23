@@ -69,6 +69,8 @@ public class ApartmentProposal extends Model {
     }
 
 
+
+
     public static Finder<Long,ApartmentProposal> find = new Finder<Long, ApartmentProposal>(Long.class, ApartmentProposal.class);
 
     public static List<ApartmentProposal> all() {

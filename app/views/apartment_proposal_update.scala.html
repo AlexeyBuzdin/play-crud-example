@@ -1,0 +1,38 @@
+@(apartmentProposal: ApartmentProposal, proposalForm: Form[ApartmentProposal])
+
+@import helper._
+
+@main {
+    @if(apartmentProposal != null) {
+        @form(routes.ApartmentProposals.update(apartmentProposal.id)) {
+
+            @*Title: <input type="edit" name="title" value="@apartmentProposal.title"> <br/>*@
+
+
+            @*Apartment type: <select name="apartmentTypeId">*@
+                @*@for(apartmentType <- ApartmentType.all()){*@
+                    @*<option value="@apartmentType.id" @if(apartmentProposal.apartmentType.id == apartmentType.id){selected="true"}>@apartmentType.title</option>*@
+                @*}*@
+            @*</select><br/>*@
+
+            @*Capacity: <input type="edit" name="capacity" value="@apartmentProposal.capacity"> <br/>*@
+
+            <input type="submit" value="Save"><br/>
+
+            @*@if(hotel != null && hotel.apartments != null){*@
+                @*<ul> @for(apartmentProposal <- hotel.apartments) {*@
+                    @*<li>*@
+                        @*<a href="/hotel/@hotel.id"> @hotel.name </a>*@
+                        @*<a href="/apartmentProposal/@apartmentProposal.id">@apartmentProposal.title</a>*@
+                        @*@apartmentProposal.apartmentType.title*@
+                        @*Beds: @apartmentProposal.capacity*@
+
+                        @*<form action="/apartmentProposal/@apartmentProposal.id/delete" method="post">*@
+                            @*<input type="submit" value="Delete">*@
+                        @*</form>*@
+                    @*</li>*@
+                @*}</ul>*@
+            @*}*@
+        }
+    }
+}
