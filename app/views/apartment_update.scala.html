@@ -19,20 +19,19 @@
 
             <input type="submit" value="Save"><br/>
 
-            @*@if(hotel != null && hotel.apartments != null){*@
-                @*<ul> @for(apartment <- hotel.apartments) {*@
-                    @*<li>*@
-                        @*<a href="/hotel/@hotel.id"> @hotel.name </a>*@
-                        @*<a href="/apartment/@apartment.id">@apartment.title</a>*@
-                        @*@apartment.apartmentType.title*@
-                        @*Beds: @apartment.capacity*@
+            @if(apartment.proposals != null){
+                <ul> @for(proposal <- apartment.proposals) {
+                    <li onclick="location.href='/apartment/proposal/@proposal.id';">
+                        @proposal.dateFrom
+                        @proposal.dateTo
+                        @proposal.price
 
-                        @*<form action="/apartment/@apartment.id/delete" method="post">*@
-                            @*<input type="submit" value="Delete">*@
-                        @*</form>*@
-                    @*</li>*@
-                @*}</ul>*@
-            @*}*@
+                        <form action="/apartment/proposal/@apartment.id/delete" method="post">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </li>
+                }</ul>
+            }
         }
     }
 }
