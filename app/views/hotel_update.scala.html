@@ -4,28 +4,48 @@
 
 @main {
     @if(hotel != null) {
-        @form(routes.Hotels.update(hotel.id)) {
-
-            Name: <input type="edit" name="name" value="@hotel.name"> <br/>
-            Address: <input type="edit" name="address" value="@hotel.address"> <br/>
-
-            <input type="submit" value="Save"><br/>
-        }
-
-        @if(hotel.apartments != null){
-            <ul> @for(apartment <- hotel.apartments) {
-                <li>
-                    @*<a href="/hotel/@hotel.id"> @hotel.name </a>*@
-                    <a href="/apartment/@apartment.id">@apartment.title</a>
-                    @apartment.apartmentType.title
-                    Beds: @apartment.capacity
-
-                    <form action="/apartment/@apartment.id/delete" method="post">
-                        <input type="submit" value="Delete">
+        <div class="box-header">
+            <i class="icon-link"></i> Update '@hotel.name'
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="hpadded" style="padding-left: 13px;">
+                    <form action="/hotel/@hotel.id/update" class="form-inline" method="post">
+                        <div class="input inline">
+                            <input type="text" name="name" value="@hotel.name" placeholder="Name">
+                        </div>
+                        <div class="input inline">
+                            <input type="text" name="address" value="@hotel.address" placeholder="Address">
+                        </div>
+                        <input type="submit" value="Save" class="btn btn-small dark-blue inline btn-submit">
                     </form>
-                </li>
-            }</ul>
+                </div>
+            </div>
+        </div>
+        @if(hotel.apartments != null){
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="hpadded">
+                        <button class="big-button" data-href="/hotel/@hotel.id/apartment/new">
+                            <span class="button-text">
+                                <i class='icon-plus-sign'></i>
+                                <b>New Apartment</b>
+                            </span>
+                        </button>
+                        @for(apartment <- hotel.apartments) {
+                            <button class="big-button" data-href="/apartment/@apartment.id">
+                                <span class="button-text">
+                                    <b>@apartment.title</b><br>
+                                    @apartment.apartmentType.title<br>
+                                    <small>Beds: @apartment.capacity</small>
+                                </span>
+                            </button>
+                        }
+                    </div>
+                    <br>
+                </div>
+            </div>
         }
-        <a href="/hotel/@hotel.id/apartment/new">New Apartment</a>
+
     }
 }

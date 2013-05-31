@@ -4,17 +4,34 @@
 
 @main {
     @if(hotel != null) {
-
-        Name: @hotel.name <br/>
-        Address: @hotel.address <br/>
+        <div class="box-header">
+            <i class="icon-link"></i> @hotel.name
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="hpadded" style="padding-left: 13px;">
+                    <b>Address:</b> @hotel.address
+                </div>
+            </div>
+        </div>
 
 
         @if(hotel.apartments != null){
-            <ul> @for(apartmentType <- apartmentTypes) {
-                <li>
-                    <a href="/reserve/hotel/@hotel.id/@apartmentType.id">@apartmentType.getTitle</a>
-                </li>
-            }</ul>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="hpadded">
+                        @for(apartmentType <- apartmentTypes) {
+                            <button class="big-button" data-href="/reserve/hotel/@hotel.id/@apartmentType.id">
+                                <span class="button-text">
+                                    <i class='icon-list-ul'></i>
+                                    <b>@apartmentType.getTitle</b>
+                                </span>
+                            </button>
+                        }
+                    </div>
+                    <br>
+                </div>
+            </div>
         }
     }
 }

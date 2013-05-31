@@ -3,14 +3,23 @@
 @import helper._
 
 @main {
+    <div class="box-header">
+        <i class="icon-comments"></i> Edit proposal
+    </div>
     @if(apartmentProposal != null) {
-        @form(routes.ApartmentProposals.update(apartmentProposal.id)) {
-
-            DateFrom: <input type="edit" name="dateFrom" value="@apartmentProposal.dateFrom"> <br/>
-            DateTo: <input type="edit" name="dateTo" value="@apartmentProposal.dateTo"> <br/>
-            Price: <input type="edit" name="price" value="@apartmentProposal.price"> <br/>
-
-            <input type="submit" value="Save"><br/>
-        }
+        <div class='hpadded'>
+            <form action="/apartment/proposal/@apartmentProposal.id/update" method="post" class='form-horizontal'>
+                <div class="input inline">
+                    <input type="text" name="dateFrom" value="@apartmentProposal.dateFrom" placeholder="From: 28.01.2013" class='input-large'>
+                </div>
+                <div class="input inline">
+                    <input type="text" name="dateTo" value="@apartmentProposal.dateTo" placeholder="To: 28.01.2013" class='input-large'>
+                </div>
+                <div class="input inline">
+                    <input type="text" name="price" value="@apartmentProposal.price" placeholder="Price: 10.25" class='input-medium'>
+                </div>
+                <input type="submit" value="Save" class="btn btn-small dark-blue inline btn-submit">
+            </form>
+        </div>
     }
 }

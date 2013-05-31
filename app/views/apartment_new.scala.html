@@ -3,20 +3,26 @@
 @import helper._
 
 @main {
-    @form(routes.Apartments.save(hotelId)) {
+    <div class="box-header">
+        <i class="icon-comments"></i> Create apartment
+    </div>
+    <div class='hpadded'>
+        <form action="/hotel/@hotelId/apartment/save" method="post" class='form-horizontal'>
+            <div class="input inline">
+                <input type="text" name="title" value="" placeholder="Title" class='input-xlarge'>
+            </div>
+            <div class="input inline">
+                <select name="apartmentTypeId" class='input-medium'>
+                @for(apartmentType <- ApartmentType.all()){
+                    <option value="@apartmentType.id">@apartmentType.title</option>
+                }
+                </select>
+            </div>
+            <div class="input inline">
+                <input type="text" name="capacity" value="" placeholder="Capacity" class='input-small'> <br/>
+            </div>
+            <input type="submit" value="Save" class="btn btn-small dark-blue inline btn-submit">
+        </form>
+    </div>
 
-        Title: <input type="edit" name="title" value=""> <br/>
-
-        Apartment type:
-
-        <select name="apartmentTypeId">
-            @for(apartmentType <- ApartmentType.all()){
-                <option value="@apartmentType.id">@apartmentType.title</option>
-            }
-        </select><br/>
-
-        Capacity: <input type="edit" name="capacity" value=""> <br/>
-
-        <input type="submit" value="Save"><br/>
-    }
 }

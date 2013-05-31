@@ -4,35 +4,63 @@
 
 @main {
     @if(apartment != null) {
+        <div class="box-header">
+            <i class="icon-comments"></i> Update apartment '@apartment.title'
+        </div>
+        <div class='hpadded'>
+            <form action="/apartment/@apartment.id/update" method="post" class='form-horizontal'>
+                <div class="input inline">
+                    <input type="text" name="title" value="@apartment.title" placeholder="Title" class='input-xlarge'>
+                </div>
+                <div class="input inline">
+                    <select name="apartmentTypeId" class='input-medium'>
+                    @for(apartmentType <- ApartmentType.all()){
+                        <option value="@apartmentType.id">@apartmentType.title</option>
+                    }
+                    </select>
+                </div>
+                <div class="input inline">
+                    <input type="text" name="capacity" value="@apartment.capacity" placeholder="Capacity" class='input-small'> <br/>
+                </div>
+                <input type="submit" value="Save" class="btn btn-small dark-blue inline btn-submit">
+            </form>
+        </div>
         @form(routes.Apartments.update(apartment.id)) {
-
-            Title: <input type="edit" name="title" value="@apartment.title"> <br/>
-
-
-            Apartment type: <select name="apartmentTypeId">
-                @for(apartmentType <- ApartmentType.all()){
-                    <option value="@apartmentType.id" @if(apartment.apartmentType.id == apartmentType.id){selected="true"}>@apartmentType.title</option>
-                }
-            </select><br/>
-
-            Capacity: <input type="edit" name="capacity" value="@apartment.capacity"> <br/>
-
-            <input type="submit" value="Save"><br/>
-
             @if(apartment.proposals != null){
-                <ul> @for(proposal <- apartment.proposals) {
-                    <li onclick="location.href='/apartment/proposal/@proposal.id';">
-                        @proposal.dateFrom
-                        @proposal.dateTo
-                        @proposal.price
-
-                        <form action="/apartment/proposal/@proposal.id/delete" method="post">
-                            <input type="submit" value="Delete">
-                        </form>
-                    </li>
-                }</ul>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(proposal <- apartment.proposals) {
+                        <tr>
+                            <td>@proposal.dateFrom</td>
+                            <td>@proposal.dateTo</td>
+                            <td>@proposal.price</td>
+                            <td>
+                                <a href="/apartment/proposal/@proposal.id" class="btn btn-primary btn-mini no-margin">Show</a>
+                                <a href="/apartment/proposal/@proposal.id/delete" class="btn btn-danger btn-mini no-margin delete-link" data-delete-parent='tr'>Delete</a>
+                            </td>
+                        </tr>
+                    }
+                        <tr>
+                            <td colspan='4' class='data-link' data-href="/apartment/@apartment.id/proposal/new">
+                                <i class='icon-plus-sign-alt'></i> New Proposal
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4"></td>
+                        </tr>
+                    </tfoot>
+                </table>
             }
-            <a href="/apartment/@apartment.id/proposal/new">New Proposal</a>
         }
     }
 }

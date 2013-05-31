@@ -1,0 +1,36 @@
+.inline {
+    display: inline-block;
+}
+.btn-submit {
+    margin-top: 1px;
+}
+
+.big-button .button-text {
+    line-height: 0px;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.data-link {
+    cursor: pointer;
+}
+
+.article.mini {
+    margin-left: 40px !important;
+}
+
+.comment-box i {
+    font-size: 28pt;
+    margin-top: 6px;
+}
+
+.comment-box.medium i {
+    font-size: 20pt;
+    margin-top: 0px;
+}
+
+.comment-box.medium a {
+    margin-top: 0px;
+}

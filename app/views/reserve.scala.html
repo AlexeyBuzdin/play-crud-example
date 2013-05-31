@@ -3,13 +3,24 @@
 @import helper._
 
 @main {
-
-    <h1>There are total of @hotels.size hotel(s) in the DB</h1>
-
-    <ul> @hotels.map { hotel =>
-        <li>
-            <a href="/reserve/hotel/@hotel.id"> @hotel.name </a>
-            @hotel.address
-        </li>
-    }</ul>
+    <div class="box-header">
+        <i class="icon-comments"></i> Total of @hotels.size hotels
+    </div>
+    <div class="hpadded">
+        <ul class="recent-comments"> @hotels.map { hotel =>
+            <li class="comment-box data-link" data-href='/reserve/hotel/@hotel.id' style="padding: 8px; min-height: 0;">
+                <div class="pull-left">
+                    <i class="icon-home"></i>
+                </div>
+                <div class="article mini">
+                    <div class="post-content-preview">
+                        @hotel.name
+                    </div>
+                    <div class="post-info">@hotel.address</div>
+                </div>
+            </li>
+        }
+        </ul>
+        <br>
+    </div>
 }
