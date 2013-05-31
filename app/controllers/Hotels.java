@@ -12,7 +12,7 @@ public class Hotels extends Controller {
     static Form<Hotel> form = Form.form(Hotel.class);
 
     public static Result all() {
-        return ok(views.html.index.render(Hotel.all(), form));
+        return ok(views.html.hotels.render(Hotel.all(), form));
     }
 
     public static Result create() {
@@ -22,7 +22,7 @@ public class Hotels extends Controller {
     public static Result open(Long id) {
         Hotel hotel = Hotel.get(id);
 
-        // TODO: hack. Should be fixed in future versions
+        // TODO: hack. Should be fixed in future versions    index
         for (Apartment apartment: hotel.getApartments()) {
             Long apartmentTypeId = apartment.getApartmentType().getId();
             apartment.setApartmentType(ApartmentType.get(apartmentTypeId));
@@ -56,7 +56,7 @@ public class Hotels extends Controller {
 
     private static Status badRequest(Form<Hotel> filledForm) {
         return badRequest(
-                views.html.index.render(Hotel.all(), filledForm)
+                views.html.hotels.render(Hotel.all(), filledForm)
         );
     }
 }

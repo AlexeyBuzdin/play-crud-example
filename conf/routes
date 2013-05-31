@@ -6,6 +6,8 @@
 GET     /                                  controllers.Application.index
 
 # Tasks
+GET     /reserve                           controllers.Reserve.inquiryForm
+
 GET     /hotels                            controllers.Hotels.all
 
 GET     /hotel/new                         controllers.Hotels.create

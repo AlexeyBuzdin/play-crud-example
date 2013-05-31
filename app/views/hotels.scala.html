@@ -1,0 +1,21 @@
+@(hotels: List[Hotel], hotelForm: Form[Hotel])
+
+@import helper._
+
+@main {
+
+    <h1>There are total of @hotels.size hotel(s) in the DB</h1>
+
+    <ul> @hotels.map { hotel =>
+        <li>
+            <a href="/hotel/@hotel.id"> @hotel.name </a>
+            @hotel.address
+
+            @form(routes.Hotels.delete(hotel.id)) {
+                <input type="submit" value="Delete">
+            }
+        </li>
+    }</ul>
+
+    <a href="/hotel/new">New Hotel</a>
+}
