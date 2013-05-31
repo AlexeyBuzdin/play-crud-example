@@ -1,0 +1,20 @@
+@(apartmentType: ApartmentType, apartmentProposals: List[ApartmentProposal])
+
+@import helper._
+
+@main {
+    @if(apartmentType != null) {
+
+        @apartmentType.title" <br/>
+
+
+        @if(apartmentProposals != null){
+            <ul> @for(apartmentProposal <- apartmentProposals) {
+                <li>
+                    <a href="/reserve/apartment/@apartmentProposal.getApartment.getId">@apartmentProposal.getApartment.getTitle</a>
+                    @apartmentProposal.getPrice
+                </li>
+            }</ul>
+        }
+    }
+}

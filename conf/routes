@@ -25,7 +25,7 @@ POST    /apartment/:id/update              controllers.Apartments.update(id: Lon
 POST    /apartment/:id/delete              controllers.Apartments.delete(id: Long)
 
 GET     /apartment/:id/proposal/new        controllers.ApartmentProposals.create(id: Long)
-POST    /apartment/:id/proposal//save      controllers.ApartmentProposals.save(id: Long)
+POST    /apartment/:id/proposal/save       controllers.ApartmentProposals.save(id: Long)
 
 GET     /apartment/proposal/:id            controllers.ApartmentProposals.open(id: Long)
 POST    /apartment/proposal/:id/update     controllers.ApartmentProposals.update(id: Long)

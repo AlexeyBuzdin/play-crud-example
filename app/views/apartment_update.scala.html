@@ -26,12 +26,13 @@
                         @proposal.dateTo
                         @proposal.price
 
-                        <form action="/apartment/proposal/@apartment.id/delete" method="post">
+                        <form action="/apartment/proposal/@proposal.id/delete" method="post">
                             <input type="submit" value="Delete">
                         </form>
                     </li>
                 }</ul>
             }
+            <a href="/apartment/@apartment.id/proposal/new">New Proposal</a>
         }
     }
 }

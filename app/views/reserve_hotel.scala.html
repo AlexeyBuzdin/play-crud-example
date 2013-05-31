@@ -5,14 +5,14 @@
 @main {
     @if(hotel != null) {
 
-        Name: <input type="edit" name="name" value="@hotel.name"> <br/>
-        Address: <input type="edit" name="address" value="@hotel.address"> <br/>
+        Name: @hotel.name <br/>
+        Address: @hotel.address <br/>
 
 
         @if(hotel.apartments != null){
             <ul> @for(apartmentType <- apartmentTypes) {
                 <li>
-                    <a href="/reserve/hotel/@hotel.id/@apartmentType.id">@apartmentType</a>
+                    <a href="/reserve/hotel/@hotel.id/@apartmentType.id">@apartmentType.getTitle</a>
                 </li>
             }</ul>
         }
