@@ -8574,12 +8574,6 @@ a.label:hover, a.badge:hover {
     Work: Lead Product Designer @ http://kyruus.com
 
     */
-@font-face {
-  font-family: 'FontAwesome';
-  src: url("../font/fontawesome-webfont.eot");
-  src: url("../font/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("../font/fontawesome-webfont.woff") format("woff"), url("../font/fontawesome-webfont.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal; }
 
 /* line 34, fontawesome/_font-awesome.min.scss */
 [class^="icon-"], [class*=" icon-"] {

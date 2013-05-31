@@ -3,21 +3,25 @@
 @import helper._
 
 @main {
+    <div class="box-header">
+        <i class="icon-comments"></i> Total of @hotels.size hotels
+    </div>
+    <div class="hpadded">
+        <ul class="recent-comments"> @hotels.map { hotel =>
+            <li class="comment-box">
+                <div class="post-info"> @hotel.address </div>
+                <div class="post-content-preview"> @hotel.name</div>
 
-    <h1>There are total of @hotels.size hotel(s) in the DB</h1>
+                <div class="article-actions">
+                    <a href="/hotel/@hotel.id" class="btn btn-mini light-blue inverse">Edit</a>
+                    <a href="/hotel/@hotel.id/delete" class="btn btn-mini dark-blue delete-link" data-delete-parent='.comment-box'>Delete</a>
+                </div>
+            </li>
 
-    <ul> @hotels.map { hotel =>
-        <li>
-            <a href="/hotel/@hotel.id"> @hotel.name </a>
-            @hotel.address
-
-            @form(routes.Hotels.delete(hotel.id)) {
-                <input type="submit" value="Delete">
-            }
-        </li>
-    }</ul>
-
-    <a href="/hotel/new">New Hotel</a>
-
-
+        }
+            <li class="comment-box view-more" style="text-align: center">
+                <a href="/hotel/new">Add new</a>
+            </li>
+        </ul>
+    </div>
 }
