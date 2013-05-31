@@ -5,17 +5,9 @@
 @main {
     @form(routes.ApartmentProposals.save(apartmentId)) {
 
-        @*Title: <input type="edit" name="title" value=""> <br/>*@
-
-        @*Apartment type:*@
-
-        @*<select name="apartmentTypeId">*@
-            @*@for(apartmentType <- ApartmentType.all()){*@
-                @*<option value="@apartmentType.id">@apartmentType.title</option>*@
-            @*}*@
-        @*</select><br/>*@
-
-        @*Capacity: <input type="edit" name="capacity" value=""> <br/>*@
+        DateFrom: <input type="edit" name="dateFrom" value=""> <br/>
+        DateTo: <input type="edit" name="dateTo" value=""> <br/>
+        Price: <input type="edit" name="price" value=""> <br/>
 
         <input type="submit" value="Save"><br/>
     }
