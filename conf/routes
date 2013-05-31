@@ -6,7 +6,8 @@
 GET     /                                  controllers.Application.index
 
 # Tasks
-GET     /reserve                           controllers.Reserve.inquiryForm
+GET     /reserve                           controllers.Reserve.reserve
+GET     /reserve/hotel/:id                 controllers.Reserve.reserveHotel(id: Long)
 
 GET     /hotels                            controllers.Hotels.all
 

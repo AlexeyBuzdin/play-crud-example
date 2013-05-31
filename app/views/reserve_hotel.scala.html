@@ -1,0 +1,20 @@
+@(hotel: Hotel, apartmentTypes: List[ApartmentType])
+
+@import helper._
+
+@main {
+    @if(hotel != null) {
+
+        Name: <input type="edit" name="name" value="@hotel.name"> <br/>
+        Address: <input type="edit" name="address" value="@hotel.address"> <br/>
+
+
+        @if(hotel.apartments != null){
+            <ul> @for(apartmentType <- apartmentTypes) {
+                <li>
+                    <a href="/reserve/hotel/@hotel.id/@apartmentType.id">@apartmentType</a>
+                </li>
+            }</ul>
+        }
+    }
+}
