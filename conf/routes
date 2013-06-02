@@ -42,12 +42,5 @@ GET     /client/:id                                     controllers.Clients.open
 POST    /client/:id/update                              controllers.Clients.update(id: Long)
 POST    /client/:id/delete                              controllers.Clients.delete(id: Long)
 
-GET     /hotelService/new                               controllers.HotelServices.create
-POST    /hotelService/save                              controllers.HotelServices.save
-GET     /hotelService/:id                               controllers.HotelServices.open(id: Long)
-POST    /hotelService/:id/update                        controllers.HotelServices.update(id: Long)
-POST    /hotelService/:id/delete                        controllers.HotelServices.delete(id: Long)
-
-
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                                   controllers.Assets.at(path="/public", file)

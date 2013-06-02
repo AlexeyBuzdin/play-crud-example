@@ -33,9 +33,6 @@ public class ApartmentHistory extends Model{
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     public Client client;
 
-    @Transient
-    public List<HotelService> hotelServices = new ArrayList<HotelService>();
-
     public ApartmentHistory() {
     }
 
@@ -84,14 +81,6 @@ public class ApartmentHistory extends Model{
 
     public void setClient(Client client) {
         this.client = client;
-    }
-
-    public List<HotelService> getHotelServices() {
-        return hotelServices;
-    }
-
-    public void setHotelServices(List<HotelService> hotelServices) {
-        this.hotelServices = hotelServices;
     }
 
     public static Finder<Long,ApartmentHistory> find = new Finder<Long, ApartmentHistory>(Long.class, ApartmentHistory.class);

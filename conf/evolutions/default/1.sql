@@ -74,27 +74,6 @@ create table APARTMENT_HISTORY (
   unique(CLIENT_ID, APARTMENT_PROPOSAL_ID, BOOKED_FROM, BOOKED_TO)
 );
 
-create table HOTEL_SERVICE (
-  ID bigint auto_increment,
-
-  NAME varchar(100) not null,
-  ALIAS varchar(100) not null,
-  PRICE bigint not null,
-
-  primary key(ID),
-  unique(NAME)
-);
-
-create table ADDITIONAL_SERVICE (
-  ID bigint auto_increment,
-  HOTEL_SERVICE_ID bigint not null,
-  APARTMENT_HISTORY_ID bigint not null,
-
-  primary key(ID),
-  foreign key(HOTEL_SERVICE_ID) references HOTEL_SERVICE(ID),
-  foreign key(APARTMENT_HISTORY_ID) references APARTMENT_HISTORY(ID),
-);
-
 insert into HOTEL(NAME, ADDRESS) values
   ('Baltic Beach Hotel', 'Jurmala, Slokas street 32'),
   ('Raddisson Blue Hotel', 'Riga, Kandavas street 1');
@@ -106,10 +85,6 @@ insert into CLIENT(FIRST_NAME, LAST_NAME, EMAIL) values
   ('Mila', 'Vodolejeva', 'Mila.Vodolejeva@inbox.lv'),
   ('Zurab', 'Afonosjan', 'Zurab.Afonosjan@yandex.com'),
   ('Irena', 'Mitina', 'Irena.Mitina@inbox.lv');
-
-insert into HOTEL_SERVICE(NAME, ALIAS, PRICE) values
-  ('Extra bed', 'Extra bed', 800), ('Breakfast', 'Breakfast', 400), ('Lunch', 'Lunch', 600), ('Dinner', 'Dinner', 400),
-  ('Internet', 'Internet', 200), ('Cable TV', 'Cable TV', 200);
 
 -- http://software.goreserva.com/help/site-admin/164-how-to-manage-room-types-and-labels
 insert into APARTMENT_TYPE(TITLE) values
@@ -142,11 +117,9 @@ insert into APARTMENT_PROPOSAL(APARTMENT_ID, DATE_FROM, DATE_TO, PRICE) values
 
 # --- !Downs
 
-drop table ADDITIONAL_SERVICE;
 drop table APARTMENT;
 drop table APARTMENT_HISTORY;
 drop table APARTMENT_PROPOSAL;
 drop table APARTMENT_TYPE;
 drop table CLIENT;
 drop table HOTEL;
-drop table HOTEL_SERVICE;
