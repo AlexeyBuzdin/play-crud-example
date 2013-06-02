@@ -12,4 +12,8 @@ $(function(){
     $( ".ui-datepicker" ).datepicker({
         dateFormat: "dd.mm.yy"
     });
+    $('.data-table-a').dataTable({
+        "sPaginationType": "full_numbers",
+        "sDom": 'rtpl'
+    });
 });

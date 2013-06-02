@@ -5,14 +5,14 @@
 @main {
     @if(apartmentProposal != null) {
         <div class="box-header">
-            <i class="icon-link"></i> @apartmentProposal.apartment.title
+            <i class="icon-link"></i> Apartment @apartmentProposal.apartment.title
         </div>
 
         <form action="/reserve/proposal/@apartmentProposal.id" method="post">
             <div class='row-fluid'>
                 <div class="span6">
                     <div class="hpadded">
-                        <legend>Common info</legend>
+                        <legend>Client info</legend>
                         <div class='full-width'>
                             <input type="text" name="name" placeholder="First Name"/>
                         </div>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="span6">
                     <div class="hpadded">
-                        <legend>Extended info</legend>
+                        <legend>Apartment info</legend>
                         <p class="no-margin">
                             <b>Apartment: </b>@apartmentProposal.apartment.title (@apartmentProposal.apartment.apartmentType.title)
                         </p>

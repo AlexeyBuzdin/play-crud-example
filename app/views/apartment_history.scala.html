@@ -7,16 +7,34 @@
         <i class="icon-comments"></i> Purchase histories
     </div>
     <div class='hpadded'>
-        @apartmentHistories.map{ history =>
-        <div> @history.proposal.apartment.title
-              @FormatHelper.formatDate(history.bookedFrom)
-              @FormatHelper.formatDate(history.bookedTo)
-              @history.client.firstName
-              @history.client.lastName
-              @history.client.email
-              @FormatHelper.formatPrice(DatabaseHelper.getFullPrice(history.id)) Ls
-        </div>
-        }
+        <table class="table table-striped data-table-a">
+            <thead>
+                <tr>
+                    <th>Apartment</th>
+                    <th>Booked from</th>
+                    <th>Booked to</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @apartmentHistories.map{ history =>
+                    <tr>
+                        <td>@history.proposal.apartment.title</td>
+                        <td>@FormatHelper.formatDate(history.bookedFrom)</td>
+                        <td>@FormatHelper.formatDate(history.bookedTo)</td>
+                        <td>@history.client.firstName</td>
+                        <td>@history.client.lastName</td>
+                        <td>@history.client.email</td>
+                        <td>@FormatHelper.formatPrice(DatabaseHelper.getFullPrice(history.id)) Ls</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
     </div>
+
 
 }

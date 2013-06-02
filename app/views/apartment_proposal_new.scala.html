@@ -8,14 +8,16 @@
     </div>
     <div class='hpadded'>
         <form action="/apartment/@apartmentId/proposal/save" method="post" class='form-horizontal'>
-            <div class="input inline">
-                <input type="text" name="dateFrom" value="" placeholder="From: 28.01.2013" class='input-large'>
+            <div class="input-prepend input inline force-med-width">
+                <span class="add-on"><i class='icon-calendar'></i></span>
+                <input type="text" name="dateFrom" value="" placeholder="From:" class='input-large ui-datepicker'>
+            </div>
+            <div class="input-prepend input inline force-med-width">
+                <span class="add-on"><i class='icon-calendar'></i></span>
+                <input type="text" name="dateTo" value="" placeholder="To:" class='input-large ui-datepicker'>
             </div>
             <div class="input inline">
-                <input type="text" name="dateTo" value="" placeholder="To: 28.01.2013" class='input-large'>
-            </div>
-            <div class="input inline">
-                <input type="text" name="price" value="" placeholder="Price: 10.25" class='input-medium'>
+                <input type="text" name="price" value="" placeholder="Price:" class='input-medium'>
             </div>
             <input type="submit" value="Save" class="btn btn-small dark-blue inline btn-submit">
         </form>
