@@ -20,15 +20,13 @@ public class Reserve {
         return ok(views.html.reserve.render(Hotel.all()));
     }
 
-    public static Result reserveHotel(Long id) {
-        // TODO: load required apartment types
-        List<ApartmentType> apartmentTypes = ApartmentType.all();
-        return ok(views.html.reserve_hotel.render(Hotel.get(id), apartmentTypes));
+    public static Result reserveHotel(Long hotelId) {
+        List<ApartmentType> apartmentTypes = ApartmentType.availableFor(hotelId);
+        return ok(views.html.reserve_hotel.render(Hotel.get(hotelId), apartmentTypes));
     }
 
     public static Result reserveApartmentType(Long hotelId, Long apartmentTypeId) {
-        // TODO: load required apartment proposals
-        List<ApartmentProposal> apartmentProposals = ApartmentProposal.all();
+        List<ApartmentProposal> apartmentProposals = ApartmentProposal.availableFor(hotelId, apartmentTypeId);
         return ok(views.html.reserve_apartment_type.render(ApartmentType.get(apartmentTypeId), apartmentProposals));
     }
 

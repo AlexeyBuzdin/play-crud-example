@@ -23,7 +23,7 @@ public class Hotel extends Model {
     @Required
     public String address;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     public List<Apartment> apartments = new ArrayList<Apartment>();
 
 

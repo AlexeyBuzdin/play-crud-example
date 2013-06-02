@@ -3,8 +3,7 @@ package models;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "APARTMENT_PROPOSAL")
@@ -87,5 +86,34 @@ public class ApartmentProposal extends Model {
 
     public static void delete(Long id) {
         find.ref(id).delete();
+    }
+
+    public static List<ApartmentProposal> availableFor(Long hotelId, Long apartmentTypeId) {
+        //TODO: should be
+//        select ap.ID, ap.DATE_FROM, ap.DATE_TO, ap.PRICE  from APARTMENT a
+//        inner join APARTMENT_PROPOSAL ap on a.ID = ap.APARTMENT_ID
+//        where a.HOTEL_ID = 1
+//        and a.APARTMENT_TYPE_ID = 1
+//        and ap.DATE_FROM <= CURRENT_TIMESTAMP()
+//        and ap.DATE_TO >= CURRENT_TIMESTAMP()
+
+        List<Apartment> apartments = Apartment.find.where().eq("HOTEL_ID", hotelId).findList();
+
+        List<ApartmentProposal> filteredApartment = new ArrayList<ApartmentProposal>();
+        for(Apartment apartment: apartments ){
+            Long typeId = apartment.apartmentType.id;
+            if(typeId.equals(apartmentTypeId)){
+                List<ApartmentProposal> proposals = apartment.getProposals();
+                for(ApartmentProposal proposal: proposals) {
+                    ApartmentProposal proposalLoaded = ApartmentProposal.get(proposal.id);
+
+                    Date currentDate = new Date();
+                    if(proposalLoaded.getDateFrom().before(currentDate) && proposalLoaded.getDateTo().after(currentDate)){
+                        filteredApartment.add(proposalLoaded);
+                    }
+                }
+            }
+        }
+        return filteredApartment;
     }
 }

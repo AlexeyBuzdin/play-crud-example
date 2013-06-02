@@ -1,10 +1,16 @@
 package models;
 
+import com.avaje.ebean.Ebean;
+import com.avaje.ebean.Query;
+import com.avaje.ebean.RawSql;
+import com.avaje.ebean.RawSqlBuilder;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static play.data.validation.Constraints.Required;
 
@@ -18,6 +24,7 @@ public class ApartmentType extends Model {
     public Long id;
 
     @Required
+    @Column(name = "TITLE")
     public String title;
 
     public Long getId() {
@@ -57,4 +64,23 @@ public class ApartmentType extends Model {
         find.ref(id).delete();
     }
 
+    public static List<ApartmentType> availableFor(Long hotelId) {
+
+        //TODO: should be
+//        select at.ID, at.TITLE,  from APARTMENT_TYPE at
+//        inner join APARTMENT a on a.APARTMENT_TYPE_ID = at.ID
+//        where a.HOTEL_ID = 1
+
+        List<Apartment> apartments = Apartment.find.where().eq("HOTEL_ID", hotelId).findList();
+
+        Map<Long, ApartmentType> apartmentTypes = new HashMap<Long, ApartmentType>();
+        for(Apartment apartment: apartments ){
+            Long typeId = apartment.apartmentType.id;
+            if(!apartmentTypes.containsKey(typeId)){
+                apartmentTypes.put(typeId, ApartmentType.get(typeId));
+            }
+        }
+
+        return new ArrayList<ApartmentType>(apartmentTypes.values());
+    }
 }
