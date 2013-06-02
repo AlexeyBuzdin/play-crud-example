@@ -16,4 +16,8 @@ $(function(){
         "sPaginationType": "full_numbers",
         "sDom": 'rtpl'
     });
+
+    $('.print-e').click(function(){
+        $($(this).data('print')).printElement();
+    });
 });
