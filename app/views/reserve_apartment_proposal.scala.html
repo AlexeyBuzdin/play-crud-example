@@ -1,4 +1,4 @@
-@(apartmentProposal: ApartmentProposal)
+@(apartmentProposal: ApartmentProposal, taken: Boolean)
 
 @import helpers._
 
@@ -9,6 +9,7 @@
         </div>
 
         <form action="/reserve/proposal/@apartmentProposal.id" method="post">
+            @if(taken){"Sorry room is not available at that time"}else{}
             <div class='row-fluid'>
                 <div class="span6">
                     <div class="hpadded">

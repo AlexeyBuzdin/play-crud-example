@@ -9,6 +9,8 @@ import views.html.reserve_apartment_proposal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import static play.data.Form.form;
@@ -40,7 +42,7 @@ public class Reserve {
         ApartmentType apartmentType = ApartmentType.get(apartment.apartmentType.id);
         apartment.setApartmentType(apartmentType);
 
-        return ok(reserve_apartment_proposal.render(apartmentProposal));
+        return ok(reserve_apartment_proposal.render(apartmentProposal, false));
     }
 
     public static Result reserveProposalByClient(long proposalId) {
@@ -55,19 +57,76 @@ public class Reserve {
 
         ApartmentProposal apartmentProposal = ApartmentProposal.get(proposalId);
 
-        String bookedFrom = dynamicForm.get("bookedFrom");
-        String bookedTo = dynamicForm.get("bookedTo");
+        // TODO: Dirty hack because of ebean doesn't load dependencies by default
+        Apartment apartment = Apartment.get(apartmentProposal.apartment.id);
+        apartmentProposal.setApartment(apartment);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        ApartmentType apartmentType = ApartmentType.get(apartment.apartmentType.id);
+        apartment.setApartmentType(apartmentType);
+
 
         try {
-            ApartmentHistory apartmentHistory = new ApartmentHistory(dateFormat.parse(bookedFrom),
-                    dateFormat.parse(bookedTo), apartmentProposal, client);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+
+            Date bookedToDate = dateFormat.parse(dynamicForm.get("bookedTo"));
+            Date bookedFromDate = dateFormat.parse(dynamicForm.get("bookedFrom"));
+
+            if(roomAlreadyReserved(apartmentProposal, bookedFromDate, bookedToDate)){
+                return ok(reserve_apartment_proposal.render(apartmentProposal, true));
+            }
+
+            ApartmentHistory apartmentHistory = new ApartmentHistory(bookedFromDate,
+                    bookedToDate, apartmentProposal, client);
             ApartmentHistory.save(apartmentHistory);
         } catch (ParseException e) {
 
         }
 
         return ok(reserve.render(Hotel.all()));
+    }
+
+    private static boolean roomAlreadyReserved(ApartmentProposal apartmentProposal, Date bookedFromDate, Date bookedToDate) {
+        // TODO: Should look
+//        select * from APARTMENT_HISTORY
+//        where APARTMENT_PROPOSAL_ID in (?, ?, ?)
+//        and BOOKED_FROM between ? and ?
+//        and BOOKED_TO between '? and '?'
+//        and BOOKED_FROM > '?'
+//        and BOOKED_TO > '?'
+
+        Long apartmentId = apartmentProposal.getApartment().getId();
+        List<ApartmentProposal> apartmentProposals = ApartmentProposal.find.where().eq("APARTMENT_ID", apartmentId).findList();
+        List<Long> extractedIds = extractId(apartmentProposals);
+
+        List<ApartmentHistory> conflicts = ApartmentHistory.find.where().
+                in("APARTMENT_PROPOSAL_ID", extractedIds).findList();
+
+//        between("BOOKED_FROM", bookedFromDate, bookedToDate).
+//                between("BOOKED_TO", bookedFromDate, bookedToDate).
+//                gt("BOOKED_FROM", bookedFromDate).
+//                gt("BOOKED_TO", bookedToDate)
+
+        Iterator<ApartmentHistory> iterator = conflicts.iterator();
+        while (iterator.hasNext()){
+            ApartmentHistory next = iterator.next();
+            if(next.bookedFrom.after(bookedFromDate) && next.bookedTo.before(bookedFromDate) ||
+               next.bookedFrom.after(bookedToDate) && next.bookedTo.before(bookedToDate) ||
+               bookedFromDate.after(next.bookedFrom) && bookedFromDate.before(next.bookedFrom) ||
+               bookedToDate.after(next.bookedTo) && bookedToDate.before(next.bookedTo) ){
+
+               iterator.remove();
+
+            }
+        }
+
+        return conflicts.size() != 0;
+    }
+
+    private static List<Long> extractId(List<ApartmentProposal> apartmentProposals) {
+        List<Long> ids = new ArrayList<Long>();
+        for(ApartmentProposal proposal: apartmentProposals){
+            ids.add(proposal.getId());
+        }
+        return ids;
     }
 }
