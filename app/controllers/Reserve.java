@@ -39,7 +39,7 @@ public class Reserve {
         Apartment apartment = Apartment.get(apartmentProposal.apartment.id);
         apartmentProposal.setApartment(apartment);
 
-        ApartmentType apartmentType = ApartmentType.get(apartment.id);
+        ApartmentType apartmentType = ApartmentType.get(apartment.apartmentType.id);
         apartment.setApartmentType(apartmentType);
 
         return ok(reserve_apartment_proposal.render(apartmentProposal));
