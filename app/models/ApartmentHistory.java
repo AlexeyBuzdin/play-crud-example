@@ -1,5 +1,8 @@
 package models;
 
+import com.avaje.ebean.*;
+import com.avaje.ebean.Query;
+import play.db.DB;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
@@ -30,6 +33,7 @@ public class ApartmentHistory extends Model{
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     public Client client;
 
+    @Transient
     public List<HotelService> hotelServices = new ArrayList<HotelService>();
 
     public ApartmentHistory() {

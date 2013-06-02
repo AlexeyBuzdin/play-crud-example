@@ -1,4 +1,5 @@
 @(apartmentHistories: List[ApartmentHistory])
+@import helpers.DatabaseHelper
 @import helpers.FormatHelper
 
 @main {
@@ -13,7 +14,7 @@
               @history.client.firstName
               @history.client.lastName
               @history.client.email
-              @FormatHelper.formatPrice(history.proposal.price) Ls
+              @FormatHelper.formatPrice(DatabaseHelper.getFullPrice(history.id)) Ls
         </div>
         }
     </div>

@@ -30,6 +30,7 @@ public class ApartmentProposals extends Controller {
     }
 
     public static Result update(Long id) {
+//        TODO: add ApartmentProposal update
 //        if(id != null){
 //            Form<ApartmentProposal> filledForm = form.fill(ApartmentProposal.find.byId(id)).bindFromRequest();
 //            if(filledForm.hasErrors()) return badRequest(filledForm);
