@@ -8,4 +8,8 @@ $(function(){
     $('.big-button, .data-link').click(function(){
         location.href = $(this).data('href');
     });
+
+    $( ".ui-datepicker" ).datepicker({
+        dateFormat: "dd.mm.yy"
+    });
 });

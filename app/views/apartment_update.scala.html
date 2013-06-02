@@ -1,5 +1,6 @@
 @(apartment: Apartment, hotelForm: Form[Apartment])
 
+@import helpers.FormatHelper
 @import helper._
 
 @main {
@@ -39,9 +40,9 @@
                     <tbody>
                     @for(proposal <- apartment.proposals) {
                         <tr>
-                            <td>@proposal.dateFrom</td>
-                            <td>@proposal.dateTo</td>
-                            <td>@proposal.price</td>
+                            <td>@FormatHelper.formatDate(proposal.dateFrom)</td>
+                            <td>@FormatHelper.formatDate(proposal.dateTo)</td>
+                            <td>@FormatHelper.formatPrice(proposal.price)</td>
                             <td>
                                 <a href="/apartment/proposal/@proposal.id" class="btn btn-primary btn-mini no-margin">Show</a>
                                 <a href="/apartment/proposal/@proposal.id/delete" class="btn btn-danger btn-mini no-margin delete-link" data-delete-parent='tr'>Delete</a>

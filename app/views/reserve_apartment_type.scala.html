@@ -1,20 +1,30 @@
 @(apartmentType: ApartmentType, apartmentProposals: List[ApartmentProposal])
 
-@import helper._
+@import helpers.FormatHelper
 
 @main {
     @if(apartmentType != null) {
-
-        @apartmentType.title" <br/>
+        <div class="box-header">
+            <i class="icon-link"></i> @apartmentType.title
+        </div>
 
 
         @if(apartmentProposals != null){
-            <ul> @for(apartmentProposal <- apartmentProposals) {
-                <li>
-                    <a href="/reserve/proposal/@apartmentProposal.getApartment.getId">@apartmentProposal.getApartment.getTitle</a>
-                    @apartmentProposal.getPrice
-                </li>
-            }</ul>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="hpadded">
+                    @for(apartmentProposal <- apartmentProposals) {
+                        <button class="big-button" data-href="/reserve/proposal/@apartmentProposal.getApartment.getId">
+                            <span class="button-text">
+                                <b>Apartment @apartmentProposal.getApartment.getTitle</b><br>
+                                <small>@FormatHelper.formatPrice(apartmentProposal.price) Ls/Day</small>
+                            </span>
+                        </button>
+                    }
+                    </div>
+                    <br>
+                </div>
+            </div>
         }
     }
 }

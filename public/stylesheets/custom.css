@@ -9,8 +9,18 @@
     line-height: 0px;
 }
 
+.force-med-width {
+    width: 240px;
+}
+.force-med-width input{
+    width: 200px;
+}
+
 .no-margin {
     margin: 0;
+}
+.no-bot-margin {
+    margin-bottom: 0;
 }
 
 .data-link {

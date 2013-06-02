@@ -1,6 +1,6 @@
 @(hotelService: HotelService, hotelServiceForm: Form[HotelService])
 
-@import helper._
+@import helpers.FormatHelper
 
 @main {
     @if(hotelService != null) {
@@ -16,7 +16,7 @@
                     <input type="text" name="name" value="@hotelService.name" placeholder="Name" class='input-large'>
                 </div>
                 <div class="input inline">
-                    <input type="text" name="price" value="@hotelService.price" placeholder="Price" class='input-medium'> <br/>
+                    <input type="text" name="price" value="@FormatHelper.formatPrice(hotelService.price)" placeholder="Price" class='input-medium'> <br/>
                 </div>
                 <input type="submit" value="Save" class="btn btn-small dark-blue inline btn-submit">
             </form>

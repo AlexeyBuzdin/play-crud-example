@@ -1,5 +1,6 @@
 @(apartmentProposal: ApartmentProposal)
 
+@import helpers.FormatHelper
 @import helper._
 
 @main {
@@ -10,13 +11,13 @@
         <div class='hpadded'>
             <form action="/apartment/proposal/@apartmentProposal.id/update" method="post" class='form-horizontal'>
                 <div class="input inline">
-                    <input type="text" name="dateFrom" value="@apartmentProposal.dateFrom" placeholder="From: 28.01.2013" class='input-large'>
+                    <input type="text" name="dateFrom" value="@FormatHelper.formatDate(apartmentProposal.dateFrom)" placeholder="From: 28.01.2013" class='input-large'>
                 </div>
                 <div class="input inline">
-                    <input type="text" name="dateTo" value="@apartmentProposal.dateTo" placeholder="To: 28.01.2013" class='input-large'>
+                    <input type="text" name="dateTo" value="@FormatHelper.formatDate(apartmentProposal.dateTo)" placeholder="To: 28.01.2013" class='input-large'>
                 </div>
                 <div class="input inline">
-                    <input type="text" name="price" value="@apartmentProposal.price" placeholder="Price: 10.25" class='input-medium'>
+                    <input type="text" name="price" value="@FormatHelper.formatPrice(apartmentProposal.price)" placeholder="Price: 10.25" class='input-medium'>
                 </div>
                 <input type="submit" value="Save" class="btn btn-small dark-blue inline btn-submit">
             </form>
