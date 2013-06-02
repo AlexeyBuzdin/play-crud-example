@@ -12,6 +12,8 @@ GET     /reserve/proposal/:apartmentId     controllers.Reserve.reserveProposal(a
 POST    /reserve/proposal/:id              controllers.Reserve.reserveProposalByClient(id: Long)
 GET     /reserve/hotel/:hotelId/:apId      controllers.Reserve.reserveApartmentType(hotelId: Long, apId: Long)
 
+GET     /history                           controllers.ApartmentHistories.all
+
 GET     /hotels                            controllers.Hotels.all
 
 GET     /hotel/new                         controllers.Hotels.create

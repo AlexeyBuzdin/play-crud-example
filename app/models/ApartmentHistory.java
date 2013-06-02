@@ -22,11 +22,11 @@ public class ApartmentHistory extends Model{
     @Column(name = "BOOKED_TO")
     public Date bookedTo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "APARTMENT_PROPOSAL_ID", nullable = false)
     public ApartmentProposal proposal;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "CLIENT_ID", nullable = false)
     public Client client;
 
@@ -66,7 +66,29 @@ public class ApartmentHistory extends Model{
         this.bookedTo = bookedTo;
     }
 
+    public ApartmentProposal getProposal() {
+        return proposal;
+    }
 
+    public void setProposal(ApartmentProposal proposal) {
+        this.proposal = proposal;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public List<HotelService> getHotelServices() {
+        return hotelServices;
+    }
+
+    public void setHotelServices(List<HotelService> hotelServices) {
+        this.hotelServices = hotelServices;
+    }
 
     public static Finder<Long,ApartmentHistory> find = new Finder<Long, ApartmentHistory>(Long.class, ApartmentHistory.class);
 
