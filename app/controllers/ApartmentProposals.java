@@ -2,16 +2,11 @@ package controllers;
 
 import models.Apartment;
 import models.ApartmentProposal;
-import models.ApartmentType;
-import models.Hotel;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import scala.runtime.Nothing$;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -23,28 +18,35 @@ public class ApartmentProposals extends Controller {
         return ok(views.html.apartment_proposal_new.render(apartmentId));
     }
 
-    public static Result open(Long id) {
+    public static Result open(Long id, Long aId) {
         ApartmentProposal apartmentProposal = ApartmentProposal.get(id);
 
-        return ok(views.html.apartment_proposal_update.render(apartmentProposal));
+        return ok(views.html.apartment_proposal_update.render(apartmentProposal, aId));
     }
 
-    public static Result update(Long id) {
+    public static Result update(Long id, Long aId) {
 //        TODO: add ApartmentProposal update
-//        if(id != null){
-//            Form<ApartmentProposal> filledForm = form.fill(ApartmentProposal.find.byId(id)).bindFromRequest();
-//            if(filledForm.hasErrors()) return badRequest(filledForm);
-//            ApartmentProposal apartment = ApartmentProposal.get();
-//
-//
-//            ApartmentProposal.update(apartment, id);
-//        }
-        return redirect(routes.Hotels.all());
+        if(id != null){
+            ApartmentProposal apartmentProposal = ApartmentProposal.get(id);
+            if(apartmentProposal != null){
+                DynamicForm dynamicForm = form().bindFromRequest();
+                ApartmentProposal apartmentProposalNew = getApartment(aId, dynamicForm);
+                apartmentProposalNew.update(id);
+            }
+        }
+        return redirect(routes.Apartments.open(aId));
     }
 
     public static Result save(Long apartmentId) {
         DynamicForm dynamicForm = form().bindFromRequest();
 
+        ApartmentProposal apartmentProposal = getApartment(apartmentId, dynamicForm);
+        ApartmentProposal.save(apartmentProposal);
+
+        return redirect(routes.Apartments.open(apartmentId));
+    }
+
+    private static ApartmentProposal getApartment(Long apartmentId, DynamicForm dynamicForm) {
         String dateFrom = dynamicForm.get("dateFrom");
         String dateTo = dynamicForm.get("dateTo");
         String price = dynamicForm.get("price");
@@ -57,18 +59,15 @@ public class ApartmentProposals extends Controller {
             proposal.setDateTo(dateFormat.parse(dateTo));
             proposal.setPrice(new Long(price.replace(".", "")));
             proposal.setApartment(Apartment.get(apartmentId));
-            ApartmentProposal.save(proposal);
+            return proposal;
         } catch (ParseException e) {
-
-
+            return null;
         }
-
-        return redirect(routes.Apartments.open(apartmentId));
     }
 
-    public static Result delete(Long id) {
+    public static Result delete(Long id, Long aId) {
         ApartmentProposal.delete(id);
-        return redirect(routes.Hotels.all());
+        return redirect(routes.Apartments.open(aId));
     }
 
     private static Status badRequest(Form filledForm) {

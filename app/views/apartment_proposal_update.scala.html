@@ -1,4 +1,4 @@
-@(apartmentProposal: ApartmentProposal)
+@(apartmentProposal: ApartmentProposal, aId: Long)
 
 @import helpers.FormatHelper
 @import helper._
@@ -9,12 +9,14 @@
     </div>
     @if(apartmentProposal != null) {
         <div class='hpadded'>
-            <form action="/apartment/proposal/@apartmentProposal.id/update" method="post" class='form-horizontal'>
-                <div class="input inline">
-                    <input type="text" name="dateFrom" value="@FormatHelper.formatDate(apartmentProposal.dateFrom)" placeholder="From: 28.01.2013" class='input-large'>
+            <form action="/apartment/@aId/proposal/@apartmentProposal.id/update" method="post" class='form-horizontal'>
+                <div class="input-prepend inline force-med-width">
+                    <span class="add-on"><i class='icon-calendar'></i></span>
+                    <input type="text" name="dateFrom" value="@FormatHelper.formatDate(apartmentProposal.dateFrom)" placeholder="From: 28.01.2013" class='input-large ui-datepicker'>
                 </div>
-                <div class="input inline">
-                    <input type="text" name="dateTo" value="@FormatHelper.formatDate(apartmentProposal.dateTo)" placeholder="To: 28.01.2013" class='input-large'>
+                <div class='input-prepend inline force-med-width'>
+                    <span class="add-on"><i class='icon-calendar'></i></span>
+                    <input type="text" name="dateTo" value="@FormatHelper.formatDate(apartmentProposal.dateTo)" placeholder="To: 28.01.2013" class='input-large ui-datepicker'>
                 </div>
                 <div class="input inline">
                     <input type="text" name="price" value="@FormatHelper.formatPrice(apartmentProposal.price)" placeholder="Price: 10.25" class='input-medium'>

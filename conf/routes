@@ -3,51 +3,51 @@
 # ~~~~
 
 # Home page
-GET     /                                  controllers.Application.index
+GET     /                                               controllers.Application.index
 
 # Tasks
-GET     /reserve                           controllers.Reserve.reserve
-GET     /reserve/hotel/:id                 controllers.Reserve.reserveHotel(id: Long)
-GET     /reserve/proposal/:apartmentId     controllers.Reserve.reserveProposal(apartmentId: Long)
-POST    /reserve/proposal/:id              controllers.Reserve.reserveProposalByClient(id: Long)
-GET     /reserve/hotel/:hotelId/:apId      controllers.Reserve.reserveApartmentType(hotelId: Long, apId: Long)
+GET     /reserve                                        controllers.Reserve.reserve
+GET     /reserve/hotel/:id                              controllers.Reserve.reserveHotel(id: Long)
+GET     /reserve/proposal/:apartmentId                  controllers.Reserve.reserveProposal(apartmentId: Long)
+POST    /reserve/proposal/:id                           controllers.Reserve.reserveProposalByClient(id: Long)
+GET     /reserve/hotel/:hotelId/:apId                   controllers.Reserve.reserveApartmentType(hotelId: Long, apId: Long)
 
-GET     /history                           controllers.ApartmentHistories.all
+GET     /history                                        controllers.ApartmentHistories.all
 
-GET     /hotels                            controllers.Hotels.all
+GET     /hotels                                         controllers.Hotels.all
 
-GET     /hotel/new                         controllers.Hotels.create
-POST    /hotel/save                        controllers.Hotels.save
-GET     /hotel/:id                         controllers.Hotels.open(id: Long)
-POST    /hotel/:id/update                  controllers.Hotels.update(id: Long)
-POST    /hotel/:id/delete                  controllers.Hotels.delete(id: Long)
+GET     /hotel/new                                      controllers.Hotels.create
+POST    /hotel/save                                     controllers.Hotels.save
+GET     /hotel/:id                                      controllers.Hotels.open(id: Long)
+POST    /hotel/:id/update                               controllers.Hotels.update(id: Long)
+POST    /hotel/:id/delete                               controllers.Hotels.delete(id: Long)
 
-GET     /hotel/:hotelId/apartment/new      controllers.Apartments.create(hotelId: Long)
-POST    /hotel/:hotelId/apartment/save     controllers.Apartments.save(hotelId: Long)
+GET     /hotel/:hotelId/apartment/new                   controllers.Apartments.create(hotelId: Long)
+POST    /hotel/:hotelId/apartment/save                  controllers.Apartments.save(hotelId: Long)
 
-GET     /apartment/:id                     controllers.Apartments.open(id: Long)
-POST    /apartment/:id/update              controllers.Apartments.update(id: Long)
-POST    /apartment/:id/delete              controllers.Apartments.delete(id: Long)
+GET     /apartment/:id                                  controllers.Apartments.open(id: Long)
+POST    /apartment/:id/update                           controllers.Apartments.update(id: Long)
+POST    /apartment/:id/delete                           controllers.Apartments.delete(id: Long)
 
-GET     /apartment/:id/proposal/new        controllers.ApartmentProposals.create(id: Long)
-POST    /apartment/:id/proposal/save       controllers.ApartmentProposals.save(id: Long)
+GET     /apartment/:id/proposal/new                     controllers.ApartmentProposals.create(id: Long)
+POST    /apartment/:id/proposal/save                    controllers.ApartmentProposals.save(id: Long)
 
-GET     /apartment/proposal/:id            controllers.ApartmentProposals.open(id: Long)
-POST    /apartment/proposal/:id/update     controllers.ApartmentProposals.update(id: Long)
-POST    /apartment/proposal/:id/delete     controllers.ApartmentProposals.delete(id: Long)
+GET     /apartment/:aId/proposal/:id                    controllers.ApartmentProposals.open(id: Long, aId: Long)
+POST    /apartment/:aId/proposal/:id/update             controllers.ApartmentProposals.update(id: Long, aId: Long)
+POST    /apartment/:aId/proposal/:id/delete             controllers.ApartmentProposals.delete(id: Long, aId: Long)
 
-GET     /client/new                        controllers.Clients.create
-POST    /client/save                       controllers.Clients.save
-GET     /client/:id                        controllers.Clients.open(id: Long)
-POST    /client/:id/update                 controllers.Clients.update(id: Long)
-POST    /client/:id/delete                 controllers.Clients.delete(id: Long)
+GET     /client/new                                     controllers.Clients.create
+POST    /client/save                                    controllers.Clients.save
+GET     /client/:id                                     controllers.Clients.open(id: Long)
+POST    /client/:id/update                              controllers.Clients.update(id: Long)
+POST    /client/:id/delete                              controllers.Clients.delete(id: Long)
 
-GET     /hotelService/new                  controllers.HotelServices.create
-POST    /hotelService/save                 controllers.HotelServices.save
-GET     /hotelService/:id                  controllers.HotelServices.open(id: Long)
-POST    /hotelService/:id/update           controllers.HotelServices.update(id: Long)
-POST    /hotelService/:id/delete           controllers.HotelServices.delete(id: Long)
+GET     /hotelService/new                               controllers.HotelServices.create
+POST    /hotelService/save                              controllers.HotelServices.save
+GET     /hotelService/:id                               controllers.HotelServices.open(id: Long)
+POST    /hotelService/:id/update                        controllers.HotelServices.update(id: Long)
+POST    /hotelService/:id/delete                        controllers.HotelServices.delete(id: Long)
 
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file                      controllers.Assets.at(path="/public", file)
+GET     /assets/*file                                   controllers.Assets.at(path="/public", file)

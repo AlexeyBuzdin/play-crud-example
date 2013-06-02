@@ -44,8 +44,8 @@
                             <td>@FormatHelper.formatDate(proposal.dateTo)</td>
                             <td>@FormatHelper.formatPrice(proposal.price)</td>
                             <td>
-                                <a href="/apartment/proposal/@proposal.id" class="btn btn-primary btn-mini no-margin">Show</a>
-                                <a href="/apartment/proposal/@proposal.id/delete" class="btn btn-danger btn-mini no-margin delete-link" data-delete-parent='tr'>Delete</a>
+                                <a href="/apartment/@apartment.id/proposal/@proposal.id" class="btn btn-primary btn-mini no-margin">Show</a>
+                                <a href="/apartment/@apartment.id/proposal/@proposal.id/delete" class="btn btn-danger btn-mini no-margin delete-link" data-delete-parent='tr'>Delete</a>
                             </td>
                         </tr>
                     }
