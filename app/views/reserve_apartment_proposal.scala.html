@@ -1,0 +1,23 @@
+@(apartmentProposal: ApartmentProposal)
+
+@import helper._
+
+@main {
+    @if(apartmentProposal != null) {
+
+        @apartmentProposal.apartment.title <br/>
+        @apartmentProposal.apartment.apartmentType.title <br/>
+        @apartmentProposal.apartment.capacity <br/>
+        @apartmentProposal.price <br/>
+
+        <form action="/reserve/proposal/@apartmentProposal.id" method="post" class='form-horizontal'>
+            <input type="text" name="name" placeholder="First Name"/>
+            <input type="text" name="surname" placeholder="Last Name"/>
+            <input type="text" name="email" placeholder="Email"/>
+            <input type="text" name="bookedFrom" placeholder="24.10.2013"/>
+            <input type="text" name="bookedTo" placeholder="25.10.2013"/>
+
+            <input type="submit" value="Reserve">
+        </form>
+    }
+}

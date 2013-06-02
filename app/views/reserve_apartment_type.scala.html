@@ -11,7 +11,7 @@
         @if(apartmentProposals != null){
             <ul> @for(apartmentProposal <- apartmentProposals) {
                 <li>
-                    <a href="/reserve/apartment/@apartmentProposal.getApartment.getId">@apartmentProposal.getApartment.getTitle</a>
+                    <a href="/reserve/proposal/@apartmentProposal.getApartment.getId">@apartmentProposal.getApartment.getTitle</a>
                     @apartmentProposal.getPrice
                 </li>
             }</ul>

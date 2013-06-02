@@ -30,6 +30,15 @@ public class Client extends Model{
     @Column(name = "EMAIL")
     public String email;
 
+    public Client() {
+    }
+
+    public Client(String name, String surname, String email) {
+        this.firstName = name;
+        this.lastName = surname;
+        this.email = email;
+    }
+
     public Long getId() {
         return id;
     }
@@ -84,5 +93,14 @@ public class Client extends Model{
 
     public static void update(Client client, Long id) {
         client.update(id);
+    }
+
+    public static Client saveIfNotPresent(Client client) {
+        Client oldVersion = find.where().eq("firstName", client.firstName).eq("lastName", client.lastName).eq("email", client.email).findUnique();
+        if(oldVersion == null){
+            client.save();
+            return Client.saveIfNotPresent(client);
+        }
+        return oldVersion;
     }
 }

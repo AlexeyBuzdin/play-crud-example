@@ -3,7 +3,9 @@ package models;
 import play.db.ebean.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "APARTMENT_HISTORY")
@@ -19,6 +21,26 @@ public class ApartmentHistory extends Model{
 
     @Column(name = "BOOKED_TO")
     public Date bookedTo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "APARTMENT_PROPOSAL_ID", nullable = false)
+    public ApartmentProposal proposal;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CLIENT_ID", nullable = false)
+    public Client client;
+
+    public List<HotelService> hotelServices = new ArrayList<HotelService>();
+
+    public ApartmentHistory() {
+    }
+
+    public ApartmentHistory(Date bookedFrom, Date bookedTo, ApartmentProposal apartmentProposal, Client client) {
+        this.bookedFrom = bookedFrom;
+        this.bookedTo = bookedTo;
+        this.proposal = apartmentProposal;
+        this.client = client;
+    }
 
     public Long getId() {
         return id;
@@ -43,4 +65,25 @@ public class ApartmentHistory extends Model{
     public void setBookedTo(Date bookedTo) {
         this.bookedTo = bookedTo;
     }
+
+
+
+    public static Finder<Long,ApartmentHistory> find = new Finder<Long, ApartmentHistory>(Long.class, ApartmentHistory.class);
+
+    public static List<ApartmentHistory> all() {
+        return find.all();
+    }
+
+    public static ApartmentHistory get(Long id) {
+        return find.byId(id);
+    }
+
+    public static void save(ApartmentHistory proposal) {
+        proposal.save();
+    }
+
+    public static void delete(Long id) {
+        find.ref(id).delete();
+    }
+
 }

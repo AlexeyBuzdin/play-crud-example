@@ -8,6 +8,9 @@ GET     /                                  controllers.Application.index
 # Tasks
 GET     /reserve                           controllers.Reserve.reserve
 GET     /reserve/hotel/:id                 controllers.Reserve.reserveHotel(id: Long)
+GET     /reserve/proposal/:apartmentId     controllers.Reserve.reserveProposal(apartmentId: Long)
+POST    /reserve/proposal/:id              controllers.Reserve.reserveProposalByClient(id: Long)
+GET     /reserve/hotel/:hotelId/:apId      controllers.Reserve.reserveApartmentType(hotelId: Long, apId: Long)
 
 GET     /hotels                            controllers.Hotels.all
 
