@@ -40,8 +40,8 @@ create table APARTMENT_PROPOSAL (
   ID bigint auto_increment,
   APARTMENT_ID bigint not null,
 
-  DATE_FROM date,
-  DATE_TO date,
+  DATE_FROM date  not null,
+  DATE_TO date  not null,
   PRICE bigint not null,
 
   primary key(ID),
