@@ -21,16 +21,16 @@ public class HotelServices extends Controller {
 
     public static Result save() {
         Form<HotelService> filledForm = form.bindFromRequest();
-        if(filledForm.hasErrors()) return badRequest(filledForm);
+        if (filledForm.hasErrors()) return badRequest(filledForm);
 
         HotelService.save(filledForm.get());
         return redirect(routes.Hotels.all());
     }
 
     public static Result update(Long id) {
-        if(id != null){
+        if (id != null) {
             Form<HotelService> filledForm = form.fill(HotelService.find.byId(id)).bindFromRequest();
-            if(filledForm.hasErrors()) return badRequest(filledForm);
+            if (filledForm.hasErrors()) return badRequest(filledForm);
 
             HotelService.update(filledForm.get(), id);
         }

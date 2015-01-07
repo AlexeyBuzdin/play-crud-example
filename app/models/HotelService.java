@@ -11,7 +11,7 @@ import static play.db.ebean.Model.Finder;
 
 @Entity
 @Table(name = "HOTEL_SERVICE")
-public class HotelService extends Model{
+public class HotelService extends Model {
 
     @Id
     @Column(name = "ID")
@@ -63,10 +63,7 @@ public class HotelService extends Model{
     }
 
 
-
-
-
-    public static Finder<Long,HotelService> find = new Finder<Long, HotelService>(Long.class, HotelService.class);
+    public static Finder<Long, HotelService> find = new Finder<Long, HotelService>(Long.class, HotelService.class);
 
     public static List<HotelService> all() {
         return find.all();

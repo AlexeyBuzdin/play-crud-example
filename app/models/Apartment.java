@@ -19,11 +19,11 @@ public class Apartment extends Model {
     public Long id;
 
     @ManyToOne
-    @JoinColumn(name="HOTEL_ID", nullable=false)
+    @JoinColumn(name = "HOTEL_ID", nullable = false)
     public Hotel hotel;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="APARTMENT_TYPE_ID", nullable=false)
+    @JoinColumn(name = "APARTMENT_TYPE_ID", nullable = false)
     public ApartmentType apartmentType;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -86,10 +86,7 @@ public class Apartment extends Model {
     }
 
 
-
-
-
-    public static Finder<Long,Apartment> find = new Finder<Long, Apartment>(Long.class, Apartment.class);
+    public static Finder<Long, Apartment> find = new Finder<Long, Apartment>(Long.class, Apartment.class);
 
     public static List<Apartment> all() {
         return find.all();

@@ -3,21 +3,21 @@
 @import helper._
 
 @main {
-    <div class="box-header">
-        <i class="icon-comments"></i> New proposal
-    </div>
-    <div class='hpadded'>
-        <form action="/apartment/@apartmentId/proposal/save" method="post" class='form-horizontal'>
-            <div class="input inline">
-                <input type="text" name="dateFrom" value="" placeholder="From: 28.01.2013" class='input-large'>
-            </div>
-            <div class="input inline">
-                <input type="text" name="dateTo" value="" placeholder="To: 28.01.2013" class='input-large'>
-            </div>
-            <div class="input inline">
-                <input type="text" name="price" value="" placeholder="Price: 10.25" class='input-medium'>
-            </div>
-            <input type="submit" value="Save" class="btn btn-small dark-blue inline btn-submit">
-        </form>
-    </div>
+<div class="box-header">
+    <i class="icon-comments"></i> New proposal
+</div>
+<div class='hpadded'>
+    <form action="/apartment/@apartmentId/proposal/save" method="post" class='form-horizontal'>
+        <div class="input inline">
+            <input type="text" name="dateFrom" value="" placeholder="From: 28.01.2013" class='input-large'>
+        </div>
+        <div class="input inline">
+            <input type="text" name="dateTo" value="" placeholder="To: 28.01.2013" class='input-large'>
+        </div>
+        <div class="input inline">
+            <input type="text" name="price" value="" placeholder="Price: 10.25" class='input-medium'>
+        </div>
+        <input type="submit" value="Save" class="btn btn-small dark-blue inline btn-submit">
+    </form>
+</div>
 }

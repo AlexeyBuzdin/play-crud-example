@@ -3,20 +3,20 @@
 @import helpers.FormatHelper
 
 @main {
-    <div class="box-header">
-        <i class="icon-comments"></i> Purchase histories
+<div class="box-header">
+    <i class="icon-comments"></i> Purchase histories
+</div>
+<div class='hpadded'>
+    @apartmentHistories.map{ history =>
+    <div> @history.proposal.apartment.title
+        @FormatHelper.formatDate(history.bookedFrom)
+        @FormatHelper.formatDate(history.bookedTo)
+        @history.client.firstName
+        @history.client.lastName
+        @history.client.email
+        @FormatHelper.formatPrice(DatabaseHelper.getFullPrice(history.id)) Ls
     </div>
-    <div class='hpadded'>
-        @apartmentHistories.map{ history =>
-        <div> @history.proposal.apartment.title
-              @FormatHelper.formatDate(history.bookedFrom)
-              @FormatHelper.formatDate(history.bookedTo)
-              @history.client.firstName
-              @history.client.lastName
-              @history.client.email
-              @FormatHelper.formatPrice(DatabaseHelper.getFullPrice(history.id)) Ls
-        </div>
-        }
-    </div>
+    }
+</div>
 
 }

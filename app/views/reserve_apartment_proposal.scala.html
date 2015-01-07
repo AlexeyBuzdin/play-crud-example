@@ -3,53 +3,57 @@
 @import helpers._
 
 @main {
-    @if(apartmentProposal != null) {
-        <div class="box-header">
-            <i class="icon-link"></i> @apartmentProposal.apartment.title
-        </div>
+@if(apartmentProposal != null) {
+<div class="box-header">
+    <i class="icon-link"></i> @apartmentProposal.apartment.title
+</div>
 
-        <form action="/reserve/proposal/@apartmentProposal.id" method="post">
-            <div class='row-fluid'>
-                <div class="span6">
-                    <div class="hpadded">
-                        <legend>Common info</legend>
-                        <div class='full-width'>
-                            <input type="text" name="name" placeholder="First Name"/>
-                        </div>
-                        <div class='full-width'>
-                            <input type="text" name="surname" placeholder="Last Name"/>
-                        </div>
-                        <div class='full-width'>
-                            <input type="text" name="email" placeholder="Email"/>
-                        </div>
-                        <input type="submit" value="Save" class="btn btn-small dark-blue inline btn-submit">
-                    </div>
+<form action="/reserve/proposal/@apartmentProposal.id" method="post">
+    <div class='row-fluid'>
+        <div class="span6">
+            <div class="hpadded">
+                <legend>Common info</legend>
+                <div class='full-width'>
+                    <input type="text" name="name" placeholder="First Name"/>
                 </div>
-                <div class="span6">
-                    <div class="hpadded">
-                        <legend>Extended info</legend>
-                        <p class="no-margin">
-                            <b>Apartment: </b>@apartmentProposal.apartment.title (@apartmentProposal.apartment.apartmentType.title)
-                        </p>
-                        <p class="no-margin">
-                            <b>Capacity: </b> @apartmentProposal.apartment.capacity
-                        </p>
-                        <p class="no-margin">
-                            <b>Price: </b> @FormatHelper.formatPrice(apartmentProposal.price) Ls/Day
-                        </p>
-                        <div class='row-fluid'>
-                            <div class='input-prepend inline force-med-width'>
-                                <span class="add-on"><i class='icon-calendar'></i></span>
-                                <input type="text" name="bookedFrom" placeholder="From:" class='ui-datepicker'/>
-                            </div>
-                            <div class='input-prepend inline force-med-width'>
-                                <span class="add-on"><i class='icon-calendar'></i></span>
-                                <input type="text" name="bookedTo" placeholder="To:" class='ui-datepicker'/>
-                            </div>
-                        </div>
+                <div class='full-width'>
+                    <input type="text" name="surname" placeholder="Last Name"/>
+                </div>
+                <div class='full-width'>
+                    <input type="text" name="email" placeholder="Email"/>
+                </div>
+                <input type="submit" value="Save" class="btn btn-small dark-blue inline btn-submit">
+            </div>
+        </div>
+        <div class="span6">
+            <div class="hpadded">
+                <legend>Extended info</legend>
+                <p class="no-margin">
+                    <b>Apartment: </b>@apartmentProposal.apartment.title
+                    (@apartmentProposal.apartment.apartmentType.title)
+                </p>
+
+                <p class="no-margin">
+                    <b>Capacity: </b> @apartmentProposal.apartment.capacity
+                </p>
+
+                <p class="no-margin">
+                    <b>Price: </b> @FormatHelper.formatPrice(apartmentProposal.price) Ls/Day
+                </p>
+
+                <div class='row-fluid'>
+                    <div class='input-prepend inline force-med-width'>
+                        <span class="add-on"><i class='icon-calendar'></i></span>
+                        <input type="text" name="bookedFrom" placeholder="From:" class='ui-datepicker'/>
+                    </div>
+                    <div class='input-prepend inline force-med-width'>
+                        <span class="add-on"><i class='icon-calendar'></i></span>
+                        <input type="text" name="bookedTo" placeholder="To:" class='ui-datepicker'/>
                     </div>
                 </div>
             </div>
-        </form>
-    }
+        </div>
+    </div>
+</form>
+}
 }

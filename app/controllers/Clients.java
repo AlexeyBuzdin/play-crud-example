@@ -21,16 +21,16 @@ public class Clients extends Controller {
 
     public static Result save() {
         Form<Client> filledForm = form.bindFromRequest();
-        if(filledForm.hasErrors()) return badRequest(filledForm);
+        if (filledForm.hasErrors()) return badRequest(filledForm);
 
         Client.save(filledForm.get());
         return redirect(routes.Hotels.all());
     }
 
     public static Result update(Long id) {
-        if(id != null){
+        if (id != null) {
             Form<Client> filledForm = form.fill(Client.find.byId(id)).bindFromRequest();
-            if(filledForm.hasErrors()) return badRequest(filledForm);
+            if (filledForm.hasErrors()) return badRequest(filledForm);
 
             Client.update(filledForm.get(), id);
         }

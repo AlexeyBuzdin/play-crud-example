@@ -22,9 +22,9 @@ public class Apartments extends Controller {
     }
 
     public static Result update(Long id) {
-        if(id != null){
+        if (id != null) {
             Form<Apartment> filledForm = form.fill(Apartment.find.byId(id)).bindFromRequest();
-            if(filledForm.hasErrors()) return badRequest(filledForm);
+            if (filledForm.hasErrors()) return badRequest(filledForm);
             Apartment apartment = filledForm.get();
 
             String apartmentTypeId = Form.form().bindFromRequest().get("apartmentTypeId");
@@ -39,7 +39,7 @@ public class Apartments extends Controller {
 
     public static Result save(Long hotelId) {
         Form<Apartment> filledForm = form.bindFromRequest();
-        if(filledForm.hasErrors()) return badRequest(filledForm);
+        if (filledForm.hasErrors()) return badRequest(filledForm);
 
         Apartment apartment = filledForm.get();
         Hotel hotel = Hotel.get(hotelId);

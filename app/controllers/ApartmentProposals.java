@@ -26,9 +26,9 @@ public class ApartmentProposals extends Controller {
 
     public static Result update(Long id, Long aId) {
 //        TODO: add ApartmentProposal update
-        if(id != null){
+        if (id != null) {
             ApartmentProposal apartmentProposal = ApartmentProposal.get(id);
-            if(apartmentProposal != null){
+            if (apartmentProposal != null) {
                 DynamicForm dynamicForm = form().bindFromRequest();
                 ApartmentProposal apartmentProposalNew = getApartment(aId, dynamicForm);
                 apartmentProposalNew.update(id);

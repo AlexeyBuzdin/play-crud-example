@@ -10,7 +10,7 @@ public class DatabaseHelper {
             "INNER JOIN APARTMENT_PROPOSAL ON APARTMENT_HISTORY.APARTMENT_PROPOSAL_ID = APARTMENT_PROPOSAL.ID " +
             "WHERE APARTMENT_HISTORY.ID = :id";
 
-    public static Long getFullPrice(Long id){
+    public static Long getFullPrice(Long id) {
         SqlQuery query = Ebean.createSqlQuery(sql).setParameter("id", id);
 
         return query.findUnique().getLong("VALUE");

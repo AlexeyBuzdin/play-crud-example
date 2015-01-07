@@ -3,28 +3,28 @@
 @import helpers.FormatHelper
 
 @main {
-    @if(apartmentType != null) {
-        <div class="box-header">
-            <i class="icon-link"></i> @apartmentType.title
-        </div>
+@if(apartmentType != null) {
+<div class="box-header">
+    <i class="icon-link"></i> @apartmentType.title
+</div>
 
 
-        @if(apartmentProposals != null){
-            <div class="row-fluid">
-                <div class="span12">
-                    <div class="hpadded">
-                    @for(apartmentProposal <- apartmentProposals) {
-                        <button class="big-button" data-href="/reserve/proposal/@apartmentProposal.id">
+@if(apartmentProposals != null){
+<div class="row-fluid">
+    <div class="span12">
+        <div class="hpadded">
+            @for(apartmentProposal <- apartmentProposals) {
+            <button class="big-button" data-href="/reserve/proposal/@apartmentProposal.id">
                             <span class="button-text">
                                 <b>Apartment @apartmentProposal.getApartment.getTitle</b><br>
                                 <small>@FormatHelper.formatPrice(apartmentProposal.price) Ls/Day</small>
                             </span>
-                        </button>
-                    }
-                    </div>
-                    <br>
-                </div>
-            </div>
-        }
-    }
+            </button>
+            }
+        </div>
+        <br>
+    </div>
+</div>
+}
+}
 }

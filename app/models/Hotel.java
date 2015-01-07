@@ -27,7 +27,6 @@ public class Hotel extends Model {
     public List<Apartment> apartments = new ArrayList<Apartment>();
 
 
-
     public Long getId() {
         return id;
     }
@@ -62,9 +61,7 @@ public class Hotel extends Model {
     }
 
 
-
-
-    public static Finder<Long,Hotel> find = new Finder<Long, Hotel>(Long.class, Hotel.class);
+    public static Finder<Long, Hotel> find = new Finder<Long, Hotel>(Long.class, Hotel.class);
 
     public static List<Hotel> all() {
         return find.all();

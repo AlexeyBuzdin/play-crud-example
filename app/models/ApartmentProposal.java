@@ -68,9 +68,7 @@ public class ApartmentProposal extends Model {
     }
 
 
-
-
-    public static Finder<Long,ApartmentProposal> find = new Finder<Long, ApartmentProposal>(Long.class, ApartmentProposal.class);
+    public static Finder<Long, ApartmentProposal> find = new Finder<Long, ApartmentProposal>(Long.class, ApartmentProposal.class);
 
     public static List<ApartmentProposal> all() {
         return find.all();
@@ -100,15 +98,15 @@ public class ApartmentProposal extends Model {
         List<Apartment> apartments = Apartment.find.where().eq("HOTEL_ID", hotelId).findList();
 
         List<ApartmentProposal> filteredApartment = new ArrayList<ApartmentProposal>();
-        for(Apartment apartment: apartments ){
+        for (Apartment apartment : apartments) {
             Long typeId = apartment.apartmentType.id;
-            if(typeId.equals(apartmentTypeId)){
+            if (typeId.equals(apartmentTypeId)) {
                 List<ApartmentProposal> proposals = apartment.getProposals();
-                for(ApartmentProposal proposal: proposals) {
+                for (ApartmentProposal proposal : proposals) {
                     ApartmentProposal proposalLoaded = ApartmentProposal.get(proposal.id);
 
                     Date currentDate = new Date();
-                    if(proposalLoaded.getDateFrom().before(currentDate) && proposalLoaded.getDateTo().after(currentDate)){
+                    if (proposalLoaded.getDateFrom().before(currentDate) && proposalLoaded.getDateTo().after(currentDate)) {
                         filteredApartment.add(proposalLoaded);
                     }
                 }

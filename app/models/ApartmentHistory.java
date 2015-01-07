@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "APARTMENT_HISTORY")
-public class ApartmentHistory extends Model{
+public class ApartmentHistory extends Model {
 
     @Id
     @Column(name = "ID")
@@ -94,7 +94,7 @@ public class ApartmentHistory extends Model{
         this.hotelServices = hotelServices;
     }
 
-    public static Finder<Long,ApartmentHistory> find = new Finder<Long, ApartmentHistory>(Long.class, ApartmentHistory.class);
+    public static Finder<Long, ApartmentHistory> find = new Finder<Long, ApartmentHistory>(Long.class, ApartmentHistory.class);
 
     public static List<ApartmentHistory> all() {
         return find.all();

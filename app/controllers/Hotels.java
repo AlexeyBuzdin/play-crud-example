@@ -23,7 +23,7 @@ public class Hotels extends Controller {
         Hotel hotel = Hotel.get(id);
 
         // TODO: hack. Should be fixed in future versions    index
-        for (Apartment apartment: hotel.getApartments()) {
+        for (Apartment apartment : hotel.getApartments()) {
             Long apartmentTypeId = apartment.getApartmentType().getId();
             apartment.setApartmentType(ApartmentType.get(apartmentTypeId));
         }
@@ -33,16 +33,16 @@ public class Hotels extends Controller {
 
     public static Result save() {
         Form<Hotel> filledForm = form.bindFromRequest();
-        if(filledForm.hasErrors()) return badRequest(filledForm);
+        if (filledForm.hasErrors()) return badRequest(filledForm);
 
         Hotel.save(filledForm.get());
         return redirect(routes.Hotels.all());
     }
 
     public static Result update(Long id) {
-        if(id != null){
+        if (id != null) {
             Form<Hotel> filledForm = form.fill(Hotel.find.byId(id)).bindFromRequest();
-            if(filledForm.hasErrors()) return badRequest(filledForm);
+            if (filledForm.hasErrors()) return badRequest(filledForm);
 
             Hotel.update(filledForm.get(), id);
         }

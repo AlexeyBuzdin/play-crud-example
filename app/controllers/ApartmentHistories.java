@@ -12,7 +12,7 @@ public class ApartmentHistories extends Controller {
     public static Result all() {
         List<ApartmentHistory> all = ApartmentHistory.all();
         // TODO: Dirty hack. Ebean doesn't select oneToMany dependencies by default
-        for(ApartmentHistory apartmentHistory: all){
+        for (ApartmentHistory apartmentHistory : all) {
             apartmentHistory.setClient(Client.get(apartmentHistory.getClient().getId()));
             ApartmentProposal proposal = ApartmentProposal.get(apartmentHistory.getProposal().getId());
             proposal.setApartment(Apartment.get(proposal.getApartment().getId()));

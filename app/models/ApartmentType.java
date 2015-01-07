@@ -44,9 +44,7 @@ public class ApartmentType extends Model {
     }
 
 
-
-
-    public static Finder<Long,ApartmentType> find = new Finder<Long, ApartmentType>(Long.class, ApartmentType.class);
+    public static Finder<Long, ApartmentType> find = new Finder<Long, ApartmentType>(Long.class, ApartmentType.class);
 
     public static List<ApartmentType> all() {
         return find.all();
@@ -74,9 +72,9 @@ public class ApartmentType extends Model {
         List<Apartment> apartments = Apartment.find.where().eq("HOTEL_ID", hotelId).findList();
 
         Map<Long, ApartmentType> apartmentTypes = new HashMap<Long, ApartmentType>();
-        for(Apartment apartment: apartments ){
+        for (Apartment apartment : apartments) {
             Long typeId = apartment.apartmentType.id;
-            if(!apartmentTypes.containsKey(typeId)){
+            if (!apartmentTypes.containsKey(typeId)) {
                 apartmentTypes.put(typeId, ApartmentType.get(typeId));
             }
         }

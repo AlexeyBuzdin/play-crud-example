@@ -11,7 +11,7 @@ import static play.db.ebean.Model.Finder;
 
 @Entity
 @Table(name = "CLIENT")
-public class Client extends Model{
+public class Client extends Model {
 
     @Id
     @Column(name = "ID")
@@ -72,8 +72,7 @@ public class Client extends Model{
     }
 
 
-
-    public static Finder<Long,Client> find = new Finder<Long, Client>(Long.class, Client.class);
+    public static Finder<Long, Client> find = new Finder<Long, Client>(Long.class, Client.class);
 
     public static List<Client> all() {
         return find.all();
@@ -97,7 +96,7 @@ public class Client extends Model{
 
     public static Client saveIfNotPresent(Client client) {
         Client oldVersion = find.where().eq("firstName", client.firstName).eq("lastName", client.lastName).eq("email", client.email).findUnique();
-        if(oldVersion == null){
+        if (oldVersion == null) {
             client.save();
             return Client.saveIfNotPresent(client);
         }
